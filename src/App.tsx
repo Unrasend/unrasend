@@ -1,6 +1,8 @@
 import './App.scss';
 import Footer from "./core/components/Footer/Footer.tsx";
 import Header from "./core/components/Header/Header.tsx";
+import {AppRouter} from "./App.routes.tsx";
+import {RouterProvider} from "react-router-dom";
 
 const App = () => (
   <div className="host">
@@ -11,6 +13,7 @@ const App = () => (
       <Header></Header>
 
       <main className="p-5xl xs:p-md">
+        <RouterProvider router={AppRouter} />
         <h1>Caption 1</h1>
         <h2>Caption 2</h2>
         <h3>Caption 3</h3>
