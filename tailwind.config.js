@@ -20,6 +20,19 @@ module.exports = {
         '4xl': '3rem',
         '5xl': '4rem',
       },
+      minHeight: {
+        '3xs': '.125rem',
+        '2xs': '.25rem',
+        xs: '.5rem',
+        sm: '.75rem',
+        md: '1rem',
+        lg: '1.25rem',
+        xl: '1.5rem',
+        '2xl': '2rem',
+        '3xl': '2.5rem',
+        '4xl': '3rem',
+        '5xl': '4rem',
+      },
       gridTemplateColumns: {
         '24': 'repeat(24, 1fr)',
       },
@@ -109,6 +122,7 @@ module.exports = {
       'f-2': 'var(--c-f-2)',
       'scroll-bg': 'var(--c-scroll-bg)',
       'scroll-thumb': 'var(--c-scroll-thumb)',
+      'highlight': 'var(--c-highlight)',
     },
     screens: {
       'xl': { 'max': '1599px' },

@@ -9,7 +9,7 @@
 @import "styles/colors.css";
 @import "styles/font-faces.css";
 
-html, body {
+html, body, #root {
   @apply h-full;
 }
 

@@ -1,5 +1,56 @@
 @import '../../../styles/utils/responsive';
 
+header {
+  @apply
+  relative
+  flex
+  items-center
+  w-full
+  h-4xl
+  min-h-4xl
+  px-md
+  bg-bg-2
+  justify-between
+  xs:flex-col
+  border-bg-body
+  border-b-2
+  transition-all
+  hover:border-highlight
+  hover:bg-highlight
+  focus-within:bg-highlight
+  focus-within:border-highlight
+  xs:hover:border-bg-body
+  xs:hover:bg-bg-2
+  xs:focus-within:bg-bg-2
+  xs:focus-within:border-bg-body;
+}
+
+nav {
+  @apply
+  flex-1
+  flex
+  items-center
+  justify-center
+  h-full
+  xs:hidden
+  transition-all;
+}
+
+ul {
+  @apply
+  flex
+  items-center
+  -translate-x-1/4
+  h-full
+  xs:h-auto
+  xs:flex-col
+  xs:translate-x-0;
+}
+
+li {
+  @apply h-full mr-xs xs:mb-xl;
+}
+
 .link {
   @apply
   flex
