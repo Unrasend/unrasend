@@ -17,7 +17,7 @@ const Home: React.FC = () => {
         Hello, I'm Vlad, seasoned software engineer specialized in building complex UI.
       </h1>
       <p className="text italic">
-        I built this site so you can get to know me in the way that matters most - to <span className="text-active">You</span>
+        Here you can take a look at the projects to which I have contributed.
       </p>
     </header>
 
