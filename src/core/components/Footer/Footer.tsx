@@ -30,9 +30,9 @@ const Footer: React.FC<{ className: string }> = ({ className }) => {
         <h2 className="h6 text-right mb-md">Social Media Links</h2>
 
         <ul className="flex xs:flex-col xs:items-center xs:mt-md">
-          <li className="m-md xs:mb-md"><a href="#">LinkedIn</a></li>
-          <li className="m-md xs:mb-md"><a href="#">Github</a></li>
-          <li className="m-md xs:mb-md"><a href="#">E-Mail</a></li>
+          <li className="m-md xs:mb-md"><a href="https://www.linkedin.com/in/unrasend/">LinkedIn</a></li>
+          <li className="m-md xs:mb-md"><a href="https://github.com/unrasend">Github</a></li>
+          <li className="m-md xs:mb-md"><a href="mailto:unrasend@gmail.com">E-Mail</a></li>
         </ul>
       </div>
     </footer>
