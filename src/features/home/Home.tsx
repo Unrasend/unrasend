@@ -43,7 +43,7 @@ const Home: React.FC = () => {
         <br/>
 
         <header className="mb-md">
-          <h2>Professional Profile</h2>
+          <h2>Profile</h2>
         </header>
         <div className="space-y-sm">
           <div className="block-row">
