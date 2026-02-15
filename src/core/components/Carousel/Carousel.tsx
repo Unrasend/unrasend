@@ -5,6 +5,7 @@ import { createPortal } from 'react-dom';
 export interface CarouselItem {
   content: React.ReactNode;
   title?: string;
+  hasFullScreenOverlay?: boolean;
 }
 
 interface CarouselProps {
@@ -86,12 +87,29 @@ export const Carousel: React.FC<CarouselProps> = ({ items, className = '', conte
                 {item.title ? <h3 className="mb-0">{item.title}</h3> : <div></div>}
                 <button onClick={toggleFullScreen} className="link text-lg">Full screen</button>
               </div>
-              <div className="flex-1 min-h-0 w-full">
+              <div className="flex-1 min-h-0 w-full relative group">
                 {item.content}
               </div>
             </div>
           ))}
         </div>
+        {items[currentIndex]?.hasFullScreenOverlay !== false && (
+          <div 
+            className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 cursor-pointer z-30"
+            onClick={toggleFullScreen}
+          >
+            <span 
+              className="text-lg font-bold px-4 py-2 rounded border shadow-lg"
+              style={{ 
+                backgroundColor: 'var(--c-bg-2)', 
+                color: 'var(--c-f-1)',
+                borderColor: 'var(--c-f-1)' 
+              }}
+            >
+              Click to enter Full Screen mode
+            </span>
+          </div>
+        )}
       </div>
 
       <div className="flex justify-between items-center mt-md">
@@ -130,7 +148,7 @@ export const Carousel: React.FC<CarouselProps> = ({ items, className = '', conte
             >
               {items.map((item, index) => (
                 <div key={index} className="carousel-item h-full flex items-center justify-center">
-                  <div className="w-full h-full">
+                  <div className="w-full h-[80%]">
                      {item.content}
                   </div>
                 </div>

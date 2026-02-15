@@ -24,19 +24,20 @@ export const Planner5dMain = () => (
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           ></iframe>
-        )
+        ),
+        hasFullScreenOverlay: false
       },
       {
         title: '2d Editing Mode',
-        content: <img src={planner1} alt="Planner 5D Screenshot 1" className="w-full h-full object-cover relative z-20" />
+        content: <img src={planner1} alt="Planner 5D Screenshot 1" className="w-full h-full object-contain relative z-20" />
       },
       {
         title: '3D Editing Mode',
-        content: <img src={planner3} alt="Planner 5D Screenshot 3" className="w-full h-full object-cover relative z-20" />
+        content: <img src={planner3} alt="Planner 5D Screenshot 3" className="w-full h-full object-contain relative z-20" />
       },
       {
         title: 'Design Contest Vote',
-        content: <img src={planner2} alt="Planner 5D Screenshot 2" className="w-full h-full object-cover relative z-20" />
+        content: <img src={planner2} alt="Planner 5D Screenshot 2" className="w-full h-full object-contain relative z-20" />
       },
     ]} />
 
