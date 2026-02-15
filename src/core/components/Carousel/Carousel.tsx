@@ -11,12 +11,11 @@ interface CarouselProps {
   items: CarouselItem[];
   className?: string;
   contentClassName?: string;
-  itemContentClassName?: string;
 }
 
 import './Carousel.scss';
 
-export const Carousel: React.FC<CarouselProps> = ({ items, className = '', contentClassName = '', itemContentClassName = '' }) => {
+export const Carousel: React.FC<CarouselProps> = ({ items, className = '', contentClassName = '' }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [modalIndex, setModalIndex] = useState(0);
   const [isFullScreen, setIsFullScreen] = useState(false);
@@ -75,7 +74,7 @@ export const Carousel: React.FC<CarouselProps> = ({ items, className = '', conte
   }
 
   return (
-    <section className={`w-full ${className}`}>
+    <section className={`w-full flex flex-col ${className}`}>
       <div className="carousel-viewport">
         <div
           className={`carousel-track ${contentClassName}`}
@@ -87,7 +86,7 @@ export const Carousel: React.FC<CarouselProps> = ({ items, className = '', conte
                 {item.title ? <h3 className="mb-0">{item.title}</h3> : <div></div>}
                 <button onClick={toggleFullScreen} className="link text-lg">Full screen</button>
               </div>
-              <div className={itemContentClassName}>
+              <div className="flex-1 min-h-0 w-full">
                 {item.content}
               </div>
             </div>
@@ -102,7 +101,7 @@ export const Carousel: React.FC<CarouselProps> = ({ items, className = '', conte
       </div>
 
       {isFullScreen && createPortal(
-        <div 
+        <div
           className="fixed inset-0 z-[100] flex flex-col items-center justify-center p-md"
           style={{ backgroundColor: 'hsla(var(--c-bg-1-hsl), 0.99)' }}
         >
@@ -124,8 +123,19 @@ export const Carousel: React.FC<CarouselProps> = ({ items, className = '', conte
             {'<'}
           </button>
 
-          <div className="w-[80%] h-[80%] flex items-center justify-center pointer-events-auto">
-             {items[modalIndex]?.content}
+          <div className="carousel-viewport w-[80%] h-[80%] pointer-events-auto">
+            <div
+              className="carousel-track h-full transition-transform duration-300 ease-in-out"
+              style={{ transform: `translateX(-${modalIndex * 100}%)` }}
+            >
+              {items.map((item, index) => (
+                <div key={index} className="carousel-item h-full flex items-center justify-center">
+                  <div className="w-full h-full">
+                     {item.content}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
 
            <button

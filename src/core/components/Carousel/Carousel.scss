@@ -1,15 +1,11 @@
 .carousel-viewport {
-  overflow: hidden;
-  width: 100%;
+  @apply overflow-hidden w-full flex-1 min-h-0;
 }
 
 .carousel-track {
-  display: flex;
-  transition: transform 0.3s ease-in-out;
-  width: 100%;
+  @apply flex w-full h-full transition-transform duration-300 ease-in-out;
 }
 
 .carousel-item {
-  flex: 0 0 100%;
-  width: 100%;
+  @apply w-full flex-none flex flex-col;
 }

@@ -12,9 +12,9 @@ export const Planner5dMain = () => (
 
     <p className="flex-1 block">Advanced 2D/3D home design tool used by ~65.5M of users.</p>
 
-    <Carousel className="mt-4" contentClassName="relative z-20" itemContentClassName="h-[900px]" items={[
+    <Carousel className="mt-4 h-[60vh]" contentClassName="relative z-20" items={[
       {
-        title: 'Commenting Demo',
+        title: 'Commenting Project Items',
         content: (
           <iframe
             className="w-full h-full aspect-video relative z-20"
