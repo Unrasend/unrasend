@@ -1,3 +1,6 @@
+@import './buttons.utils';
+@import '../utils/rem';
+
 .dashboard-grid {
   @apply grid xs:grid-cols-1 gap-md mb-xl;
 
@@ -54,11 +57,36 @@
 
   grid-template-columns: 1fr;
 
-  .block {
+  .section-block {
     @apply border-1 p-xl bg-bg-1
     transition-colors
     flex flex-col font-mono shadow-btn;
 
     border: 2px solid hsla(var(--c-f-1-hsl), .45);
   }
+}
+
+.button {
+  @extend %button-reset;
+  @apply
+  transition-all
+  not-italic
+  text-interactive
+  no-underline
+  visited:text-interactive
+  hover:text-hover
+  active:text-active
+  active:no-underline
+  border-solid
+  border-2
+  p-sm
+  border-f-3
+  hover:border-f-3
+  hover:bg-f-3
+  rounded-lg
+  focus-visible:text-hover
+  focus-visible:outline-2
+  focus-visible:no-underline
+  focus-visible:outline-dotted
+  focus-visible:outline-focus;
 }

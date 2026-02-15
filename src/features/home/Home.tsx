@@ -32,7 +32,7 @@ const Home: React.FC = () => {
               key={project.id}
               to={`/projects/${project.id}`}
               className={({ isActive }) =>
-                `link h1 !text-xl w-full ${isActive ? '!text-active' : ''}`
+                `link h1 !text-xl w-full !h-[62px] block ${isActive ? '!text-active' : ''}`
               }
             >
               -&nbsp;{project.title}

@@ -39,13 +39,7 @@ const Header = () => {
       {/*  <span></span>*/}
       {/*</button>*/}
 
-      <nav>
-        <ul>
-          <li>
-            <a href={cvPdf} className="link" download="vlad_luchkov_cv.pdf" onClick={onLinkClick}>Download CV</a>
-          </li>
-        </ul>
-      </nav>
+      <a href={cvPdf} className="link" download="vlad_luchkov_cv.pdf" onClick={onLinkClick}>Download CV</a>
     </header>
   );
 }

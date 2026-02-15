@@ -120,6 +120,7 @@ module.exports = {
       'focus': 'var(--c-focus)',
       'f-1': 'var(--c-f-1)',
       'f-2': 'var(--c-f-2)',
+      'f-3': 'var(--c-f-3)',
       'scroll-bg': 'var(--c-scroll-bg)',
       'scroll-thumb': 'var(--c-scroll-thumb)',
       'highlight': 'var(--c-highlight)',
