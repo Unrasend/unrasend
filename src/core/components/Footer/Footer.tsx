@@ -22,19 +22,17 @@ const Footer: React.FC<{ className: string }> = ({ className }) => {
       ${className}
     `}
     >
-      <h2 className="block h6 xs:mb-md">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br/>
-        <span className="text-f-1 text">© 2023 Copyright Unrasend. All rights reserved.</span>
-      </h2>
+      <div className="block h6 xs:mb-md">
+        <span className="text-f-1 text">Build with love to people. Designed with passion to machines</span>
+      </div>
 
       <div>
-        <h2 className="h6">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+        <h2 className="h6 text-right mb-md">Social Media Links</h2>
 
         <ul className="flex xs:flex-col xs:items-center xs:mt-md">
-          <li className="mr-xs xs:mb-md"><a href="#">Link</a></li>
-          <li className="mr-xs xs:mb-md"><a href="#">Link</a></li>
-          <li className="mr-xs xs:mb-md"><a href="#">Link</a></li>
-          <li className="mr-xs xs:mb-md"><a href="#">Link</a></li>
+          <li className="m-md xs:mb-md"><a href="#">LinkedIn</a></li>
+          <li className="m-md xs:mb-md"><a href="#">Github</a></li>
+          <li className="m-md xs:mb-md"><a href="#">E-Mail</a></li>
         </ul>
       </div>
     </footer>

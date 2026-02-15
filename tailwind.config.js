@@ -139,6 +139,8 @@ module.exports = {
       'lg': [ '1.25rem', '1.625rem' ],
       'xl': [ '1.625rem', '1.875rem' ],
       '2xl': [ '2.5rem', '3.125rem' ],
+      '3xl': [ '3.5rem', '3.525rem' ],
+      '4xl': [ '4.5rem', '4.125rem' ],
     }
   },
   plugins: [
