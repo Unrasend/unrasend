@@ -3,6 +3,10 @@ import React from 'react';
 
 export const ScopertyDescriptive = () => (
   <div>
+    <h4>Technologies</h4>
+    <ul>
+      <li>- TypeScript, Angular, RxJS, Google JS API, SCSS, Webpack, Jest, chart.js</li>
+    </ul>
     <h4>Key Contributions</h4>
     <ul>
       <li>- Implemented a facade component over the Google JS API, that was used for: main real estate map, property details page(location), search alert.</li>

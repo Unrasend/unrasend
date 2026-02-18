@@ -5,7 +5,7 @@ export const Planner5dDescriptive = () => (
   <div>
     <h4>Technologies</h4>
     <ul>
-      <li>TypeScript, React, tsyringe DI, Mobx lite, JQuery, ThreeJS, custom 2D rendering engine, RxJS, SCSS, Webpack</li>
+      <li>- TypeScript, React, tsyringe DI, Mobx lite, JQuery, ThreeJS, custom 2D rendering engine, RxJS, SCSS, Webpack, Jest.</li>
     </ul>
     <h4>Key Contributions</h4>
     <ul>
