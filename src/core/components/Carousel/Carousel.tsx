@@ -1,5 +1,4 @@
-
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 
 export interface CarouselItem {
@@ -12,34 +11,69 @@ interface CarouselProps {
   items: CarouselItem[];
   className?: string;
   contentClassName?: string;
+  onSlide?: (index: number) => void;
 }
 
 import './Carousel.scss';
 
-export const Carousel: React.FC<CarouselProps> = ({ items, className = '', contentClassName = '' }) => {
+export const Carousel: React.FC<CarouselProps> = ({ items, className = '', contentClassName = '', onSlide }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [modalIndex, setModalIndex] = useState(0);
   const [isFullScreen, setIsFullScreen] = useState(false);
+  
+  const trackRef = useRef<HTMLDivElement>(null);
+  const modalTrackRef = useRef<HTMLDivElement>(null);
+
+  const stopVideos = (container: HTMLElement | null, index: number) => {
+    if (!container || !container.children[index]) return;
+    
+    const slide = container.children[index] as HTMLElement;
+
+    const videos = slide.querySelectorAll('video');
+    videos.forEach(video => video.pause());
+
+    const iframes = slide.querySelectorAll('iframe');
+    iframes.forEach(iframe => {
+        const src = iframe.src;
+        iframe.src = src;
+    });
+  };
+
+  const handleSlideChange = (newIndex: number, isModal: boolean) => {
+    if (onSlide) {
+      onSlide(newIndex);
+    }
+    
+    if (isModal) {
+      stopVideos(modalTrackRef.current, modalIndex);
+      setModalIndex(newIndex);
+    } else {
+      stopVideos(trackRef.current, currentIndex);
+      setCurrentIndex(newIndex);
+    }
+  };
 
   const next = () => {
     if (isFullScreen) {
-      setModalIndex((prev) => (prev + 1) % items.length);
+      handleSlideChange((modalIndex + 1) % items.length, true);
     } else {
-      setCurrentIndex((prev) => (prev + 1) % items.length);
+      handleSlideChange((currentIndex + 1) % items.length, false);
     }
   };
 
   const prev = () => {
     if (isFullScreen) {
-      setModalIndex((prev) => (prev - 1 + items.length) % items.length);
+      handleSlideChange((modalIndex - 1 + items.length) % items.length, true);
     } else {
-      setCurrentIndex((prev) => (prev - 1 + items.length) % items.length);
+      handleSlideChange((currentIndex - 1 + items.length) % items.length, false);
     }
   };
 
   const toggleFullScreen = () => {
     if (!isFullScreen) {
       setModalIndex(currentIndex);
+    } else {
+      stopVideos(modalTrackRef.current, modalIndex);
     }
     setIsFullScreen(!isFullScreen);
   };
@@ -48,17 +82,18 @@ export const Carousel: React.FC<CarouselProps> = ({ items, className = '', conte
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'ArrowRight') {
         if (isFullScreen) {
-          setModalIndex((prev) => (prev + 1) % items.length);
+          handleSlideChange((modalIndex + 1) % items.length, true);
         } else {
-          setCurrentIndex((prev) => (prev + 1) % items.length);
+          handleSlideChange((currentIndex + 1) % items.length, false);
         }
       } else if (event.key === 'ArrowLeft') {
         if (isFullScreen) {
-          setModalIndex((prev) => (prev - 1 + items.length) % items.length);
+          handleSlideChange((modalIndex - 1 + items.length) % items.length, true);
         } else {
-          setCurrentIndex((prev) => (prev - 1 + items.length) % items.length);
+          handleSlideChange((currentIndex - 1 + items.length) % items.length, false);
         }
       } else if (event.key === 'Escape' && isFullScreen) {
+        stopVideos(modalTrackRef.current, modalIndex);
         setIsFullScreen(false);
       }
     };
@@ -68,7 +103,7 @@ export const Carousel: React.FC<CarouselProps> = ({ items, className = '', conte
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [items.length, isFullScreen]);
+  }, [items.length, isFullScreen, currentIndex, modalIndex]);
 
   if (!items || items.length === 0) {
     return null;
@@ -78,6 +113,7 @@ export const Carousel: React.FC<CarouselProps> = ({ items, className = '', conte
     <section className={`w-full flex flex-col ${className}`}>
       <div className="carousel-viewport">
         <div
+          ref={trackRef}
           className={`carousel-track ${contentClassName}`}
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
         >
@@ -143,6 +179,7 @@ export const Carousel: React.FC<CarouselProps> = ({ items, className = '', conte
 
           <div className="carousel-viewport w-[80%] h-[80%] pointer-events-auto">
             <div
+              ref={modalTrackRef}
               className="carousel-track h-full transition-transform duration-300 ease-in-out"
               style={{ transform: `translateX(-${modalIndex * 100}%)` }}
             >

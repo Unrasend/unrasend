@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink, useParams, Navigate } from 'react-router-dom';
 import { projects } from './ProjectsList';
+import diploma from '../../assets/images/diploma.jpg';
 
 const Home: React.FC = () => {
   const { projectId } = useParams();
@@ -47,33 +48,21 @@ const Home: React.FC = () => {
         </header>
         <div className="space-y-sm">
           <div className="block-row">
-            <span className="block-label text">Availability&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</span>
+            <span className="block-label text">Availability&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</span>
             <span className="block-value flex items-center text">
               <span className="status-indicator"></span>1 month
             </span>
           </div>
           <div className="block-row">
-            <span className="block-label text">Education&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</span>
-            <span className="block-value text">M.Sc. CS</span>
+            <span className="block-label text">Education&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</span>
+            <a href={diploma} target='_blank' className="text-right">M.Sc. CS</a>
           </div>
           <div className="block-row">
-            <span className="block-label text">Experience&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</span>
+            <span className="block-label text">Experience&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</span>
             <span className="block-value text">10 Years</span>
           </div>
           <div className="block-row">
-            <span className="block-label text">Time Zones&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</span>
-            <span className="block-value text">All US</span>
-          </div>
-          <div className="block-row">
-            <span className="block-label text">Preferred Location&nbsp;:</span>
-            <span className="block-value text">Remote</span>
-          </div>
-          <div className="block-row">
-            <span className="block-label text">Frameworks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</span>
-            <span className="block-value text">Hybrid Angular / React</span>
-          </div>
-          <div className="block-row">
-            <span className="block-label text">Additional focus&nbsp;&nbsp;&nbsp;:</span>
+            <span className="block-label text">Additional expertise&nbsp;:</span>
             <span className="block-value text">2D / 3D Graphics / GIS</span>
           </div>
         </div>

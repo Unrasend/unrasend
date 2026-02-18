@@ -7,7 +7,7 @@ import planner3 from '../../../../assets/images/planner5d/3.png';
 
 export const Planner5dMain = () => (
   <article className="flex flex-wrap">
-    <h3 className="w-[50%]">Planner 5D - Home Design Tool.</h3>
+    <h3 className="w-[50%]">Planner 5D - Home Design Tool. 2024 - ongoing</h3>
     <a className="flex w-[50%] items-center justify-end text-lg" href="http://planner5.com" target="_blank">Website</a>
 
     <p className="flex-1 block">Advanced 2D/3D home design tool used by ~65.5M of users.</p>
