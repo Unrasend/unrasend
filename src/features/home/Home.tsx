@@ -22,6 +22,10 @@ const Home: React.FC = () => {
       </p>
     </header>
 
+    <label htmlFor="burger" className="button w-full text-center xs:block hidden mb-xl cursor-pointer">
+      Choose Project
+    </label>
+
     <section className="dashboard-grid">
       <article className="section-block">
         <header>

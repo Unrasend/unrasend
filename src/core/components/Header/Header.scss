@@ -4,6 +4,7 @@
   @apply
   relative
   flex
+  overflow-hidden
   items-center
   w-full
   h-4xl
@@ -95,7 +96,7 @@
     }
   }
 
-  input:checked + button.burger {
+  input:checked + label.burger {
     span {
       opacity: 0;
       top: 50%;
@@ -122,7 +123,7 @@
     bg-bg-2
     transition-all;
 
-    z-index: 1;
+    z-index: 50;
 
     nav {
       @apply flex;

@@ -14,6 +14,7 @@ interface CarouselProps {
   onSlide?: (index: number) => void;
 }
 
+import { useSwipeable } from 'react-swipeable';
 import './Carousel.scss';
 
 export const Carousel: React.FC<CarouselProps> = ({ items, className = '', contentClassName = '', onSlide }) => {
@@ -78,6 +79,12 @@ export const Carousel: React.FC<CarouselProps> = ({ items, className = '', conte
     setIsFullScreen(!isFullScreen);
   };
 
+  const handlers = useSwipeable({
+    onSwipedLeft: () => next(),
+    onSwipedRight: () => prev(),
+    trackMouse: true
+  });
+
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'ArrowRight') {
@@ -111,7 +118,7 @@ export const Carousel: React.FC<CarouselProps> = ({ items, className = '', conte
 
   return (
     <section className={`w-full grid grid-rows-[1fr_auto] min-w-0 max-w-full overflow-hidden ${className}`}>
-      <div className="carousel-viewport">
+      <div className="carousel-viewport" {...handlers}>
         <div
           ref={trackRef}
           className={`carousel-track ${contentClassName}`}
@@ -177,7 +184,7 @@ export const Carousel: React.FC<CarouselProps> = ({ items, className = '', conte
             {'<'}
           </button>
 
-          <div className="carousel-viewport w-[80%] h-[80%] pointer-events-auto">
+          <div className="carousel-viewport w-[80%] h-[80%] pointer-events-auto" {...handlers}>
             <div
               ref={modalTrackRef}
               className="carousel-track h-full transition-transform duration-300 ease-in-out"
