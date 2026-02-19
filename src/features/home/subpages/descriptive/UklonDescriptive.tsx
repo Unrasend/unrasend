@@ -4,7 +4,7 @@ export const UklonDescriptive = () => (
   <div>
     <h4>Technologies used</h4>
     <ul>
-      <li>- TypeScript, Nx, Angular, NestJS, Fastify, RxJS, Cypress, Jest, SCSS, Sentry.</li>
+      <li>- TypeScript, Nx, Angular, NestJS, Fastify, RxJS, Cypress, Jest, Tailwind, SCSS, Sentry.</li>
     </ul>
     <h4>Key Contributions</h4>
     <ul>
