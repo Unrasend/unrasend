@@ -110,7 +110,7 @@ export const Carousel: React.FC<CarouselProps> = ({ items, className = '', conte
   }
 
   return (
-    <section className={`w-full flex flex-col ${className}`}>
+    <section className={`w-full grid grid-rows-[1fr_auto] min-w-0 max-w-full overflow-hidden ${className}`}>
       <div className="carousel-viewport">
         <div
           ref={trackRef}

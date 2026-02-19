@@ -1,5 +1,5 @@
 .carousel-viewport {
-  @apply overflow-hidden w-full flex-1 min-h-0 relative;
+  @apply overflow-hidden w-full h-full min-h-0 relative;
 }
 
 .carousel-track {
@@ -7,5 +7,5 @@
 }
 
 .carousel-item {
-  @apply w-full flex-none flex flex-col;
+  @apply w-full flex-none flex flex-col min-w-0;
 }
