@@ -53,8 +53,8 @@ export const projects: Project[] = [
     content2: <UpworkDescriptive />,
   },
   {
-    id: 'uklon-cp-2.0',
-    title: 'Uklon CP 2.0',
+    id: 'uklon',
+    title: 'Uklon',
     content1: <UklonMain />,
     content2: <UklonDescriptive />,
   },
