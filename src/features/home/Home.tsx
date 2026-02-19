@@ -61,10 +61,6 @@ const Home: React.FC = () => {
             <span className="block-label text">Experience&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</span>
             <span className="block-value text">10 Years</span>
           </div>
-          <div className="block-row">
-            <span className="block-label text">Additional expertise&nbsp;:</span>
-            <span className="block-value text">NestJS / 2D / 3D Graphics / GIS</span>
-          </div>
         </div>
       </article>
 
