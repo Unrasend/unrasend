@@ -23,7 +23,7 @@ const Footer: React.FC<{ className: string }> = ({ className }) => {
     `}
     >
       <div className="block h6 xs:mb-md">
-        <span className="text-f-1 text">Build with love to people. Designed with passion to machines</span>
+        <span className="text-f-1 text">Designed with passion to machines.</span>
       </div>
 
       <div>
