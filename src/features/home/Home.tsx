@@ -63,7 +63,7 @@ const Home: React.FC = () => {
           </div>
           <div className="block-row">
             <span className="block-label text">Additional expertise&nbsp;:</span>
-            <span className="block-value text">2D / 3D Graphics / GIS</span>
+            <span className="block-value text">NestJS / 2D / 3D Graphics / GIS</span>
           </div>
         </div>
       </article>
