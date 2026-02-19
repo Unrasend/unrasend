@@ -5,7 +5,7 @@ export const ScopertyDescriptive = () => (
   <div>
     <h4>Technologies</h4>
     <ul>
-      <li>- TypeScript, Angular, RxJS, Google JS API, SCSS, Webpack, Jest, chart.js</li>
+      <li>- TypeScript, Angular, RxJS, Google JS API, SCSS, Webpack, Jest, chart.js, Sentry, Python DRF, AWS Cognito</li>
     </ul>
     <h4>Key Contributions</h4>
     <ul>

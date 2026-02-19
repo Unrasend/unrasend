@@ -5,7 +5,7 @@ export const ItTransitDescriptive = () => (
   <div>
     <h4>Technologies</h4>
     <ul>
-      <li>- AngularJS, OpenLayers, jQuery, WFS/WMS, GeoServer, Java Spring, HTML5, CSS3, JavaScript, Gulp, RequireJS, Mercurial, SAP UI 5</li>
+      <li>- AngularJS, OpenLayers, jQuery, WFS/WMS, GeoServer, Java Spring, HTML5, CSS3, JavaScript, Gulp, RequireJS, Mercurial, SAP UI 5, Bash</li>
     </ul>
     <h4>Key Contributions</h4>
     <ul>

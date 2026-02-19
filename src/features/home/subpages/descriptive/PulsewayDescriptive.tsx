@@ -5,7 +5,7 @@ export const PulsewayDescriptive = () => (
   <div>
     <h4>Technologies</h4>
     <ul>
-      <li>- TypeScript, Angular, RxJS, NgXS, SCSS, Webpack, later migrated to Vite, Jasmine</li>
+      <li>- TypeScript, Angular, RxJS, NgXS, SCSS, Webpack, later migrated to Vite, Jasmine, .Net 4.5</li>
     </ul>
     <h4>Key Contributions</h4>
     <ul>

@@ -32,15 +32,15 @@ export const PulsewayMain = () => (
         hasFullScreenOverlay: false
       },
       {
-        title: '2d Editing Mode',
+        title: 'Advanced System View',
         content: <img src={pulseway1} alt="Pulseway Screenshot 1" className="w-full h-full object-contain relative z-20" />
       },
       {
-        title: '3D Editing Mode',
+        title: 'System View',
         content: <img src={pulseway2} alt="Pulseway Screenshot 2" className="w-full h-full object-contain relative z-20" />
       },
       {
-        title: 'Design Contest Vote',
+        title: 'Executed flows on systems',
         content: <img src={pulseway3} alt="Pulseway Screenshot 3" className="w-full h-full object-contain relative z-20" />
       },
     ]} />
