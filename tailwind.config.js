@@ -131,6 +131,7 @@ module.exports = {
       'header': 'var(--color-header)',
       'footer': 'var(--color-footer)',
       'border': 'var(--color-border)',
+      'status-indicator': 'var(--color-status-indicator)',
     },
     screens: {
       'xl': { 'max': '1599px' },

@@ -8,6 +8,7 @@ import nightSvg from '../../../assets/icons/night.svg';
 import cvPdf from '../../../assets/vlad_luchkov_en.pdf';
 import { projects } from '../../../features/home/ProjectsList';
 import { NavLink } from 'react-router-dom';
+import AnimatedGears from '../AnimatedGears/AnimatedGears';
 
 const Header = () => {
   const burgerRef = useRef<HTMLInputElement>(null);
@@ -37,7 +38,8 @@ const Header = () => {
 
   return (
     <header className="header">
-      <span className="logo link">Vladyslav Luchkov</span>
+      <AnimatedGears />
+      <span className="logo link ml-xs">Vladyslav Luchkov</span>
       <span className="logo link ml-auto !hidden lg:block">Senior Frontend Engineer</span>
 
       <input

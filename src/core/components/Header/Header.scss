@@ -2,7 +2,9 @@
 
 .header {
   @apply
-  relative
+  sticky
+  top-0
+  z-[1]
   flex
   overflow-hidden
   items-center

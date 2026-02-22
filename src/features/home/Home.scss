@@ -50,7 +50,7 @@
 }
 
 .status-indicator {
-  @apply inline-block w-2xs h-2xs rounded-full mr-xs bg-active;
+  @apply inline-block w-2xs h-2xs rounded-full mr-xs bg-status-indicator;
   box-shadow: 0 0 0 1px var(--color-frame);
 }
 
