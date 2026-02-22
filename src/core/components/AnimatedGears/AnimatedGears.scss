@@ -4,7 +4,7 @@
   gap: 0;
 
   .gear {
-    background-color: currentColor;
+    background-color: var(--color-interactive);
     -webkit-mask-image: url("../../../assets/icons/gears.svg");
     mask-image: url("../../../assets/icons/gears.svg");
     -webkit-mask-position: center;

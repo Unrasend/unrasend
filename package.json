@@ -11,9 +11,11 @@
   },
   "dependencies": {
     "@tailwindcss/aspect-ratio": "^0.4.2",
+    "compass-mixins": "^0.12.12",
     "inversify": "^6.0.1",
     "inversify-react": "^1.1.0",
     "react": "^18.2.0",
+    "react-custom-scroll": "^7.0.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.14.2",
     "react-swipeable": "^7.0.2",
@@ -22,6 +24,7 @@
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
+    "@types/react-custom-scroll": "^5.0.3",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",

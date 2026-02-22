@@ -38,9 +38,11 @@ const Header = () => {
 
   return (
     <header className="header">
-      <AnimatedGears />
-      <span className="logo link ml-xs">Vladyslav Luchkov</span>
-      <span className="logo link ml-auto !hidden lg:block">Senior Frontend Engineer</span>
+      <div className="absolute top-[0.5rem] left-[1rem]">
+        <AnimatedGears />
+      </div>
+      <a href="#" className="logo header-link ml-xs">Vladyslav Luchkov</a>
+      <a href="#" className="logo header-link ml-auto lg:hidden">Senior Frontend Engineer</a>
 
       <input
         ref={burgerRef}
@@ -73,7 +75,7 @@ const Header = () => {
           ))}
         </ul>
 
-        <a href={cvPdf} className="link cv-link" download="vlad_luchkov_cv.pdf" onClick={onLinkClick}>Download CV</a>
+        <a href={cvPdf} className="header-link" download="vlad_luchkov_cv.pdf" onClick={onLinkClick}>Download CV</a>
 
         <button
           className="theme-toggle-btn"
@@ -88,7 +90,7 @@ const Header = () => {
         </button>
       </nav>
 
-      <a href={cvPdf} className="link cv-link ml-auto md:!hidden" download="vlad_luchkov_cv.pdf" onClick={onLinkClick}>Download CV</a>
+      <a href={cvPdf} className="header-link ml-auto md:!hidden" download="vlad_luchkov_cv.pdf" onClick={onLinkClick}>Download CV</a>
 
       <button
         className="theme-toggle-btn md:hidden"

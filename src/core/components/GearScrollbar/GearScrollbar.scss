@@ -1,0 +1,67 @@
+.gear-scrollbar-container {
+  height: 100%;
+  width: 100%;
+  position: relative;
+
+  .gear {
+    margin: 5px; 
+    position: absolute; 
+    height: 56px; 
+    left: -32.5px; 
+    top: calc(80% - 28px); // center vertically (28px = half of 56px gear height)
+    transform: rotate(-7deg);
+    width: 56px;  
+    z-index: 1000;
+    will-change: transform;
+    
+    background-color: var(--color-border);
+    -webkit-mask-image: url("../../../assets/icons/gear.svg");
+    mask-image: url("../../../assets/icons/gear.svg");
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+  }
+
+  .page {
+    margin-top: -13px;
+    margin-left: 48px; 
+    position: relative;
+    top: 12.75px;      
+    
+    .rack {
+      display: inline-block;
+      height: 100%;
+      position: absolute;
+      width: 10px; 
+      left: -25px;
+      top: 0;
+      
+      background-color: var(--color-border);
+      -webkit-mask-image: url("../../../assets/icons/rack.svg");
+      mask-image: url("../../../assets/icons/rack.svg");
+      -webkit-mask-size: 10px 8.5px;
+      mask-size: 10px 8.5px;
+      -webkit-mask-repeat: repeat-y;
+      mask-repeat: repeat-y;
+    }
+    
+    .content {
+      left: 4px; 
+      padding: 0 7.5px; 
+      position: relative;
+      top: 0;
+      min-height: 100vh;
+    }
+  }
+}
+
+// Custom scrollbar thumb styling
+.rcs-custom-scroll .rcs-inner-handle {
+  background-color: var(--color-custom-scrollbar);
+  border: none;
+  border-radius: 0;
+  opacity: 0.8;
+}

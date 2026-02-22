@@ -1,5 +1,21 @@
 @import '../../../styles/utils/responsive';
 
+.header-link {
+  @apply
+  flex
+  items-center
+  min-h-[3rem]
+  px-xs
+  rounded-xl
+  transition-all
+  hover:bg-header
+  focus:bg-header;
+
+  &:hover {
+    box-shadow: 0 0 .2rem .1rem var(--color-shadow-inset) inset;
+  }
+}
+
 .header {
   @apply
   sticky
@@ -13,6 +29,7 @@
   min-h-4xl
   px-md
   pt-1
+  pl-[4rem]
   bg-header
   justify-between
   border-surface-base
@@ -21,22 +38,6 @@
   md:flex-col
   md:h-auto
   md:overflow-visible;
-
-  .link {
-    @apply
-    flex
-    items-center
-    min-h-[3rem]
-    px-xs
-    rounded-xl
-    transition-all
-    hover:bg-header
-    focus:bg-header;
-
-    &:hover {
-      box-shadow: 0 0 .2rem .1rem var(--color-shadow-inset) inset;
-    }
-  }
 
   .burger {
     @apply
@@ -123,4 +124,8 @@
 
 .theme-toggle-btn {
   @apply w-8 h-8 flex items-center justify-center rounded-full transition-colors ml-4 focus:outline-none hover:bg-interactive-hover;
+
+  [data-theme="dark"] & img {
+    filter: invert(1) brightness(2);
+  }
 }

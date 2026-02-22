@@ -6,7 +6,7 @@ const AnimatedGears: React.FC = () => {
   const gear2Ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const scrollContainer = document.querySelector('.terminal');
+    const scrollContainer = document.querySelector('.rcs-inner-container');
 
     if (!scrollContainer) {
       return;

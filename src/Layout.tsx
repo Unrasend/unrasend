@@ -5,6 +5,7 @@ import { Outlet } from 'react-router-dom';
 
 import Footer from './core/components/Footer/Footer.tsx';
 import Header from './core/components/Header/Header.tsx';
+import GearScrollbar from './core/components/GearScrollbar/GearScrollbar.tsx';
 import { ScrollService } from './core/services/scroll.service.ts';
 
 import { ReactFCEmptyProps } from './types/react-fc-empty-props.type.ts';
@@ -23,13 +24,14 @@ const Layout: ReactFCEmptyProps = () => {
 
     <div className="terminal" ref={terminalRef}>
       <Header></Header>
-
-      <main className="main-content">
-        <Outlet />
-      </main>
-
+      <GearScrollbar>
+        <main className="main-content">
+          <Outlet />
+        </main>
+      </GearScrollbar>
       <Footer className="layout-footer"></Footer>
     </div>
+
   </div>;
 }
 

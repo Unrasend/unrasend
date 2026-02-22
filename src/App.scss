@@ -49,10 +49,10 @@
 }
 
 .terminal {
-  @apply relative flex flex-col overflow-auto w-full h-full scroll-smooth;
-  scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar-track);
+  @apply relative flex flex-col w-full h-full;
+  overflow: hidden;
 }
 
 .main-content {
-  @apply p-5xl xs:p-md;
+  @apply p-5xl pl-xl xs:p-md;
 }
