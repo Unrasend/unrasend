@@ -15,24 +15,24 @@ const Footer: React.FC<{ className: string }> = ({ className }) => {
       xs:pb-2xl
       pt-4xl
       xs:pt-2xl
-      bg-bg-1
+      bg-footer
       justify-between
-      border-bg-body
+      border-surface-base
       border-t-2
       ${className}
     `}
     >
       <div className="block h6 xs:mb-md">
-        <span className="text-f-1 text">Designed with passion to machines.</span>
+        <span className="text-fg text">Designed with passion to machines.</span>
       </div>
 
       <div>
         <h2 className="h6 text-right mb-md">Social Media Links</h2>
 
         <ul className="flex xs:flex-col xs:items-center xs:mt-md">
-          <li className="m-md xs:mb-md"><a href="https://www.linkedin.com/in/unrasend/">LinkedIn</a></li>
-          <li className="m-md xs:mb-md"><a href="https://github.com/unrasend">Github</a></li>
-          <li className="m-md xs:mb-md"><a href="mailto:unrasend@gmail.com">E-Mail</a></li>
+          <li className="m-md xs:mb-md"><a href="https://www.linkedin.com/in/unrasend/" target='_blank'>LinkedIn</a></li>
+          <li className="m-md xs:mb-md"><a href="https://github.com/unrasend" target='_blank'>Github</a></li>
+          <li className="m-md xs:mb-md"><a href="mailto:unrasend@gmail.com" target='_blank'>E-Mail</a></li>
         </ul>
       </div>
     </footer>

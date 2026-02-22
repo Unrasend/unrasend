@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
+import { useSwipeable } from 'react-swipeable';
+import './Carousel.scss';
 
 export interface CarouselItem {
   content: React.ReactNode;
   title?: string;
-  hasFullScreenOverlay?: boolean;
+  disableFullScreen?: boolean;
 }
 
 interface CarouselProps {
@@ -14,202 +16,255 @@ interface CarouselProps {
   onSlide?: (index: number) => void;
 }
 
-import { useSwipeable } from 'react-swipeable';
-import './Carousel.scss';
-
 export const Carousel: React.FC<CarouselProps> = ({ items, className = '', contentClassName = '', onSlide }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [modalIndex, setModalIndex] = useState(0);
   const [isFullScreen, setIsFullScreen] = useState(false);
-  
-  const trackRef = useRef<HTMLDivElement>(null);
-  const modalTrackRef = useRef<HTMLDivElement>(null);
 
-  const stopVideos = (container: HTMLElement | null, index: number) => {
-    if (!container || !container.children[index]) return;
-    
-    const slide = container.children[index] as HTMLElement;
+  const viewportRef = useRef<HTMLDivElement>(null);
+  const modalViewportRef = useRef<HTMLDivElement>(null);
+  const isJumping = useRef(false);
+  const isModalJumping = useRef(false);
 
-    const videos = slide.querySelectorAll('video');
-    videos.forEach(video => video.pause());
+  const hasLoop = items.length > 1;
+  const domOffset = hasLoop ? 1 : 0;
+  const slides = (hasLoop ? [items[items.length - 1], ...items, items[0]] : items) as CarouselItem[];
+  const prevDomIndexRef = useRef(domOffset);
 
-    const iframes = slide.querySelectorAll('iframe');
-    iframes.forEach(iframe => {
-        const src = iframe.src;
-        iframe.src = src;
-    });
+  const domToLogical = (domIdx: number): number => {
+    if (!hasLoop) return domIdx;
+    if (domIdx === 0) return items.length - 1;
+    if (domIdx === items.length + 1) return 0;
+    return domIdx - 1;
   };
 
-  const handleSlideChange = (newIndex: number, isModal: boolean) => {
-    if (onSlide) {
-      onSlide(newIndex);
-    }
-    
-    if (isModal) {
-      stopVideos(modalTrackRef.current, modalIndex);
-      setModalIndex(newIndex);
-    } else {
-      stopVideos(trackRef.current, currentIndex);
-      setCurrentIndex(newIndex);
-    }
+  const pauseSlideMedia = (container: HTMLElement | null, domIndex: number) => {
+    const slide = container?.children[domIndex] as HTMLElement | undefined;
+    if (!slide) return;
+    slide.querySelectorAll('video').forEach(v => v.pause());
+    slide.querySelectorAll('iframe').forEach(iframe =>
+      iframe.contentWindow?.postMessage(JSON.stringify({ event: 'command', func: 'pauseVideo', args: '' }), '*')
+    );
   };
 
-  const next = () => {
-    if (isFullScreen) {
-      handleSlideChange((modalIndex + 1) % items.length, true);
-    } else {
-      handleSlideChange((currentIndex + 1) % items.length, false);
-    }
-  };
-
-  const prev = () => {
-    if (isFullScreen) {
-      handleSlideChange((modalIndex - 1 + items.length) % items.length, true);
-    } else {
-      handleSlideChange((currentIndex - 1 + items.length) % items.length, false);
-    }
-  };
-
-  const toggleFullScreen = () => {
-    if (!isFullScreen) {
-      setModalIndex(currentIndex);
-    } else {
-      stopVideos(modalTrackRef.current, modalIndex);
-    }
-    setIsFullScreen(!isFullScreen);
-  };
-
-  const handlers = useSwipeable({
-    onSwipedLeft: () => next(),
-    onSwipedRight: () => prev(),
-    trackMouse: true
-  });
-
+  // ── Main carousel: initial scroll position ──────────────────────────────
   useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'ArrowRight') {
-        if (isFullScreen) {
-          handleSlideChange((modalIndex + 1) % items.length, true);
-        } else {
-          handleSlideChange((currentIndex + 1) % items.length, false);
+    const viewport = viewportRef.current;
+    if (!viewport || !hasLoop) return;
+
+    let mounted = true;
+    let initialLoadDone = false;
+
+    const resizeObserver = new ResizeObserver(() => {
+        if (!mounted || initialLoadDone) return;
+        
+        if (viewport.clientWidth > 0) {
+           initialLoadDone = true;
+           isJumping.current = true;
+           viewport.style.scrollBehavior = 'auto';
+           viewport.scrollLeft = viewport.clientWidth;
+           
+           requestAnimationFrame(() => {
+             if (!mounted) return;
+             viewport.style.scrollBehavior = '';
+             requestAnimationFrame(() => {
+               if (mounted) isJumping.current = false;
+             });
+           });
         }
-      } else if (event.key === 'ArrowLeft') {
-        if (isFullScreen) {
-          handleSlideChange((modalIndex - 1 + items.length) % items.length, true);
-        } else {
-          handleSlideChange((currentIndex - 1 + items.length) % items.length, false);
-        }
-      } else if (event.key === 'Escape' && isFullScreen) {
-        stopVideos(modalTrackRef.current, modalIndex);
-        setIsFullScreen(false);
+    });
+    
+    resizeObserver.observe(viewport);
+
+    return () => {
+      mounted = false;
+      resizeObserver.disconnect();
+    };
+  }, [hasLoop]);
+
+  // ── Main carousel: scroll handler ───────────────────────────────────────
+  useEffect(() => {
+    const viewport = viewportRef.current;
+    if (!viewport) return;
+
+    const handleScroll = () => {
+      if (isJumping.current) return;
+      const domIndex = Math.round(viewport.scrollLeft / viewport.clientWidth);
+      if (domIndex === prevDomIndexRef.current) return;
+
+      pauseSlideMedia(viewport, prevDomIndexRef.current);
+      prevDomIndexRef.current = domIndex;
+
+      const logicalIndex = domToLogical(domIndex);
+      setCurrentIndex(logicalIndex);
+      onSlide?.(logicalIndex);
+
+      if (hasLoop && (domIndex === 0 || domIndex === items.length + 1)) {
+        const targetDom = domIndex === 0 ? items.length : 1;
+        requestAnimationFrame(() => {
+          isJumping.current = true;
+          viewport.style.scrollBehavior = 'auto';
+          viewport.scrollLeft = targetDom * viewport.clientWidth;
+          prevDomIndexRef.current = targetDom;
+          requestAnimationFrame(() => {
+            viewport.style.scrollBehavior = '';
+            isJumping.current = false;
+          });
+        });
       }
     };
 
-    window.addEventListener('keydown', handleKeyDown);
+    viewport.addEventListener('scroll', handleScroll, { passive: true });
+    return () => viewport.removeEventListener('scroll', handleScroll);
+  }, [onSlide, items.length, hasLoop]);
 
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
+  // ── Modal viewport: scroll handler ──────────────────────────────────────
+  useEffect(() => {
+    const viewport = modalViewportRef.current;
+    if (!viewport || !isFullScreen) return;
+
+    const handleScroll = () => {
+      if (isModalJumping.current) return;
+      const idx = Math.round(viewport.scrollLeft / viewport.clientWidth);
+      setModalIndex(idx);
     };
-  }, [items.length, isFullScreen, currentIndex, modalIndex]);
 
-  if (!items || items.length === 0) {
-    return null;
-  }
+    viewport.addEventListener('scroll', handleScroll, { passive: true });
+    return () => viewport.removeEventListener('scroll', handleScroll);
+  }, [isFullScreen]);
+
+  // ── Modal viewport: scroll to index when modalIndex changes externally ──
+  const modalScrollTo = (index: number) => {
+    const viewport = modalViewportRef.current;
+    if (!viewport) return;
+    pauseSlideMedia(viewport, modalIndex);
+    viewport.scrollTo({ left: index * viewport.clientWidth, behavior: 'smooth' });
+  };
+
+  const scrollToIndex = (logicalIndex: number) => {
+    const viewport = viewportRef.current;
+    if (!viewport) return;
+    pauseSlideMedia(viewport, prevDomIndexRef.current);
+    viewport.scrollTo({ left: (logicalIndex + domOffset) * viewport.clientWidth, behavior: 'smooth' });
+  };
+
+  const nextMain = () => scrollToIndex((currentIndex + 1) % items.length);
+  const prevMain = () => scrollToIndex((currentIndex - 1 + items.length) % items.length);
+
+  const navigateModal = (delta: number) => {
+    const nextIndex = (modalIndex + delta + items.length) % items.length;
+    modalScrollTo(nextIndex);
+  };
+
+  const toggleFullScreen = (index?: number) => {
+    if (!isFullScreen) {
+      const startIndex = index ?? currentIndex;
+      setModalIndex(startIndex);
+      // After the portal renders, jump the modal viewport to the right slide instantly
+      requestAnimationFrame(() => {
+        const viewport = modalViewportRef.current;
+        if (!viewport) return;
+        isModalJumping.current = true;
+        viewport.style.scrollBehavior = 'auto';
+        viewport.scrollLeft = startIndex * viewport.clientWidth;
+        requestAnimationFrame(() => {
+          viewport.style.scrollBehavior = '';
+          isModalJumping.current = false;
+        });
+      });
+    } else {
+      const viewport = modalViewportRef.current;
+      pauseSlideMedia(viewport, modalIndex);
+    }
+    setIsFullScreen(prev => !prev);
+  };
+
+  const modalSwipeHandlers = useSwipeable({
+    onSwipedLeft: () => navigateModal(1),
+    onSwipedRight: () => navigateModal(-1),
+    trackMouse: true,
+  });
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowRight') isFullScreen ? navigateModal(1) : nextMain();
+      else if (e.key === 'ArrowLeft') isFullScreen ? navigateModal(-1) : prevMain();
+      else if (e.key === 'Escape' && isFullScreen) {
+        const viewport = modalViewportRef.current;
+        pauseSlideMedia(viewport, modalIndex);
+        setIsFullScreen(false);
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [isFullScreen, currentIndex, modalIndex, items.length]);
+
+  if (!items.length) return null;
 
   return (
-    <section className={`w-full grid grid-rows-[1fr_auto] min-w-0 max-w-full overflow-hidden ${className}`}>
-      <div className="carousel-viewport" {...handlers}>
-        <div
-          ref={trackRef}
-          className={`carousel-track ${contentClassName}`}
-          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-        >
-          {items.map((item, index) => (
-            <div key={index} className="carousel-item">
-              <div className="flex justify-between items-center mb-sm">
-                {item.title ? <h3 className="mb-0">{item.title}</h3> : <div></div>}
-                <button onClick={toggleFullScreen} className="link text-lg">Full screen</button>
-              </div>
-              <div className="flex-1 min-h-0 w-full relative group">
-                {item.content}
-              </div>
+    <section className={`carousel-container ${className}`}>
+      <div ref={viewportRef} className="carousel-viewport">
+        {slides.map((item, domIndex) => (
+          <div key={domIndex} className={`carousel-item ${contentClassName}`}>
+            <div className="carousel-header">
+              {item.title ? <h3 className="mb-0">{item.title}</h3> : <div />}
+              {!item.disableFullScreen && (
+                <button onClick={() => toggleFullScreen(domToLogical(domIndex))} className="button btn-text text-lg">
+                  Full screen
+                </button>
+              )}
             </div>
-          ))}
-        </div>
-        {items[currentIndex]?.hasFullScreenOverlay !== false && (
-          <div 
-            className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 cursor-pointer z-30"
-            onClick={toggleFullScreen}
-          >
-            <span 
-              className="text-lg font-bold px-4 py-2 rounded border shadow-lg"
-              style={{ 
-                backgroundColor: 'var(--c-bg-2)', 
-                color: 'var(--c-f-1)',
-                borderColor: 'var(--c-f-1)' 
-              }}
+            <div
+              className="flex-1 min-h-0 w-full relative"
+              onClick={!item.disableFullScreen ? () => toggleFullScreen(domToLogical(domIndex)) : undefined}
+              style={{ cursor: !item.disableFullScreen ? 'pointer' : 'default' }}
             >
-              Click to enter Full Screen mode
-            </span>
+              {item.content}
+            </div>
           </div>
-        )}
+        ))}
       </div>
 
-      <div className="flex justify-between items-center mt-md">
-        <button onClick={prev} className="button text-lg" disabled={items.length <= 1}>{'<'}</button>
+      <div className="carousel-controls">
+        <button onClick={prevMain} className="button text-lg" disabled={items.length <= 1}>{'<'}</button>
         <span className="h4">{currentIndex + 1}/{items.length}</span>
-        <button onClick={next} className="button text-lg" disabled={items.length <= 1}>{'>'}</button>
+        <button onClick={nextMain} className="button text-lg" disabled={items.length <= 1}>{'>'}</button>
       </div>
 
       {isFullScreen && createPortal(
         <div
-          className="fixed inset-0 z-[100] flex flex-col items-center justify-center p-md"
-          style={{ backgroundColor: 'hsla(var(--c-bg-1-hsl), 0.99)' }}
+          className="carousel-modal-overlay"
+          style={{ backgroundColor: 'hsla(var(--color-surface-hsl), 0.99)' }}
         >
           <button
-            onClick={toggleFullScreen}
-            className="absolute top-md right-md text-2xl text-white hover:opacity-80 z-50 pointer-events-auto cursor-pointer"
-          >
-            ✕
-          </button>
+            onClick={() => toggleFullScreen()}
+            className="carousel-modal-close"
+          >✕</button>
 
-          <div className="absolute top-md left-1/2 -translate-x-1/2 text-center w-full max-w-[80%]">
-             {items[modalIndex]?.title && <h2 className="text-white text-xl">{items[modalIndex]?.title}</h2>}
+          <div className="carousel-modal-title-wrapper">
+            {items[modalIndex]?.title && <h2 className="text-xl">{items[modalIndex]?.title}</h2>}
           </div>
 
-          <button
-            onClick={prev}
-            className="absolute left-md top-1/2 -translate-y-1/2 text-4xl text-white hover:opacity-80 z-50 cursor-pointer"
-          >
-            {'<'}
-          </button>
+          <button onClick={() => navigateModal(-1)} className="carousel-modal-nav nav-prev">{'<'}</button>
 
-          <div className="carousel-viewport w-[80%] h-[80%] pointer-events-auto" {...handlers}>
+          <div {...modalSwipeHandlers} className="carousel-modal-swipe-wrapper">
             <div
-              ref={modalTrackRef}
-              className="carousel-track h-full transition-transform duration-300 ease-in-out"
-              style={{ transform: `translateX(-${modalIndex * 100}%)` }}
+              ref={modalViewportRef}
+              className="carousel-modal-viewport"
             >
               {items.map((item, index) => (
-                <div key={index} className="carousel-item h-full flex items-center justify-center">
-                  <div className="w-full h-[80%]">
-                     {item.content}
-                  </div>
+                <div key={index} className="carousel-modal-item">
+                  <div className="carousel-modal-item-content">{item.content}</div>
                 </div>
               ))}
             </div>
           </div>
 
-           <button
-            onClick={next}
-            className="absolute right-md top-1/2 -translate-y-1/2 text-4xl text-white hover:opacity-80 z-50 cursor-pointer"
-          >
-            {'>'}
-          </button>
+          <button onClick={() => navigateModal(1)} className="carousel-modal-nav nav-next">{'>'}</button>
 
-           <div className="absolute bottom-md left-1/2 -translate-x-1/2 text-white text-lg">
-             {modalIndex + 1} / {items.length}
-           </div>
+          <div className="carousel-modal-pager">
+            {modalIndex + 1} / {items.length}
+          </div>
         </div>,
         document.body
       )}

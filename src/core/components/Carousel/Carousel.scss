@@ -1,11 +1,83 @@
 .carousel-viewport {
-  @apply overflow-hidden w-full h-full min-h-0 relative;
+  @apply w-full h-full min-h-0 relative flex overflow-x-scroll scroll-smooth snap-x snap-mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.carousel-item {
+  @apply flex-none flex flex-col min-w-0 w-full snap-start overflow-hidden;
 }
 
 .carousel-track {
   @apply flex w-full h-full transition-transform duration-300 ease-in-out;
 }
 
-.carousel-item {
-  @apply w-full flex-none flex flex-col min-w-0;
+.carousel-modal-viewport {
+  @apply flex w-[80%] h-[80%] overflow-x-scroll scroll-smooth snap-x snap-mandatory;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.carousel-modal-swipe-wrapper {
+  @apply w-full h-full flex items-center justify-center;
+}
+
+.carousel-modal-item {
+  @apply flex-none w-full h-full flex items-center justify-center snap-start;
+}
+
+.carousel-container {
+  @apply w-full grid min-w-0 max-w-full overflow-hidden;
+  grid-template-rows: auto 1fr auto;
+}
+
+.carousel-header {
+  @apply flex justify-between items-center mb-sm;
+}
+
+.carousel-controls {
+  @apply flex justify-between items-center mt-md;
+}
+
+.carousel-modal-overlay {
+  @apply fixed inset-0 flex flex-col items-center justify-center p-md z-[100];
+}
+
+.carousel-modal-close {
+  @apply absolute top-md right-md text-2xl hover:opacity-80 pointer-events-auto cursor-pointer text-modal-fg z-50 bg-transparent border-none;
+}
+
+.carousel-modal-title-wrapper {
+  @apply absolute top-md left-1/2 -translate-x-1/2 text-center w-full max-w-[80%];
+}
+
+.carousel-modal-nav {
+  @apply absolute top-1/2 -translate-y-1/2 text-4xl hover:opacity-80 cursor-pointer text-modal-fg z-50 bg-transparent border-none;
+
+  &.nav-prev {
+    @apply left-md;
+  }
+
+  &.nav-next {
+    @apply right-md;
+  }
+}
+
+.carousel-modal-item {
+  @apply h-full flex items-center justify-center;
+}
+
+.carousel-modal-item-content {
+  @apply w-full h-[80%];
+}
+
+.carousel-modal-pager {
+  @apply absolute bottom-md left-1/2 -translate-x-1/2 text-lg text-modal-fg;
 }

@@ -11,76 +11,47 @@
   min-h-4xl
   px-md
   pt-1
-  bg-bg-2
+  bg-header
   justify-between
-  xs:flex-col
-  border-bg-body
+  border-surface-base
   border-b-2
+  border-brand
   transition-all
-  hover:border-highlight
-  hover:bg-highlight
-  focus-within:bg-highlight
-  focus-within:border-highlight
-  xs:hover:border-bg-body
-  xs:hover:bg-bg-2
-  xs:focus-within:bg-bg-2
-  xs:focus-within:border-bg-body;
-
-  nav {
-    @apply
-    flex
-    items-center
-    justify-end
-    h-full
-    xs:hidden
-    transition-all;
-  }
-
-  ul {
-    @apply
-    flex
-    items-center
-    -translate-x-1/4
-    h-full
-    xs:h-auto
-    xs:flex-col
-    xs:translate-x-0;
-  }
-
-  li {
-    @apply h-full mr-xs xs:mb-xl;
-  }
+  hover:border-brand
+  hover:bg-brand
+  focus-within:bg-brand
+  focus-within:border-brand
+  md:flex-col
+  md:h-auto
+  md:overflow-visible;
 
   .link {
     @apply
     flex
     items-center
-    h-full
+    min-h-[3rem]
     px-xs
     rounded-xl
     transition-all
-    hover:bg-bg-2
-    focus:bg-bg-2;
+    hover:bg-header
+    focus:bg-header;
 
     &:hover {
-      box-shadow: 0 0 .2rem .1rem rgba(0, 0, 0, .75) inset;
+      box-shadow: 0 0 .2rem .1rem var(--color-shadow-inset) inset;
     }
   }
 
   .burger {
     @apply
-    hidden
-    xs:block
     absolute
     cursor-pointer
     right-md
     top-md
     h-[1.25rem]
-    w-md;
+    w-md
+    z-[5];
 
-    z-index: 5;
-
-    span {
+    .burger-line {
       @apply
       absolute
       block
@@ -96,22 +67,22 @@
     }
   }
 
-  input:checked + label.burger {
-    span {
+  .burger-input:checked + .burger {
+    .burger-line {
       opacity: 0;
       top: 50%;
     }
-    span:first-child {
+    .burger-line:first-child {
       opacity: 1;
       transform: rotate(405deg);
     }
-    span:last-child {
+    .burger-line:last-child {
       opacity: 1;
       transform: rotate(-405deg);
     }
   }
 
-  &:has(input:checked) {
+  &:has(.burger-input:checked) {
     @apply
     absolute
     top-0
@@ -120,18 +91,39 @@
     h-full
     w-full
     p-sm
-    bg-bg-2
-    transition-all;
+    bg-header
+    transition-all
+    z-50;
 
-    z-index: 50;
+    .nav-menu {
+      @apply flex flex-col items-start justify-start pt-md gap-md;
+    }
 
-    nav {
-      @apply flex;
+    .nav-list {
+      @apply flex-col translate-x-0;
     }
 
     .logo {
-      height: initial;
+      @apply h-auto;
     }
   }
 
+  .nav-menu {
+    @apply items-center justify-end h-full transition-all overflow-hidden;
+  }
+
+  .nav-list {
+    @apply
+    items-center
+    -translate-x-1/4
+    h-full;
+  }
+
+  .nav-item {
+    @apply mr-xs;
+  }
+}
+
+.theme-toggle-btn {
+  @apply w-8 h-8 flex items-center justify-center rounded-full transition-colors ml-4 focus:outline-none hover:bg-interactive-hover;
 }

@@ -8,10 +8,19 @@
     <link rel="preconnect" href="https://www.youtube.com">
     <link rel="preconnect" href="https://www.google.com">
     <link rel="dns-prefetch" href="https://www.youtube.com">
-    <script type="module" crossorigin src="/unrasend/assets/index-bbce44fe.js"></script>
-    <link rel="stylesheet" href="/unrasend/assets/index-7ac61d6f.css">
+    <script type="module" crossorigin src="/unrasend/assets/index-d43d99bf.js"></script>
+    <link rel="stylesheet" href="/unrasend/assets/index-2c460d59.css">
   </head>
   <body>
+    <script>
+      (function() {
+        try {
+          var localTheme = localStorage.getItem('theme');
+          var theme = localTheme || 'light';
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (e) {}
+      })();
+    </script>
     <div id="root"></div>
     
   </body>

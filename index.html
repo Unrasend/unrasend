@@ -10,6 +10,15 @@
     <link rel="dns-prefetch" href="https://www.youtube.com">
   </head>
   <body>
+    <script>
+      (function() {
+        try {
+          var localTheme = localStorage.getItem('theme');
+          var theme = localTheme || 'light';
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (e) {}
+      })();
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

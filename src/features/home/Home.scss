@@ -1,0 +1,64 @@
+@import '../../styles/utils/rem';
+
+.home-grid {
+  @apply grid gap-md mb-xl grid-cols-[1fr_3fr] md:grid-cols-1;
+
+  .home-card {
+    @apply border border-border p-xl bg-surface transition-colors flex flex-col font-mono min-w-0;
+  }
+
+  .card-title {
+    @apply text-fg text-xl font-bold mb-lg uppercase tracking-widest border-b border-border pb-xs;
+  }
+
+  .project-list-wrapper {
+    @apply space-y-sm h-full flex flex-col items-start;
+  }
+
+  .profile-list {
+    @apply grid gap-x-xs gap-y-sm grid-cols-[max-content_max-content_1fr];
+  }
+  .project-nav-link {
+    @apply flex items-center w-full text-xl no-underline hover:text-hover text-active;
+    height: 62px !important;
+  }
+}
+
+.home-header {
+  @apply mb-3xl border-l-1 pl-md border-fg;
+}
+
+.home-bottom-grid {
+  @apply grid gap-md my-md;
+  grid-template-columns: 1fr;
+
+  .home-card {
+    @apply border border-border p-xl bg-surface transition-colors flex flex-col font-mono min-w-0;
+  }
+}
+
+.profile-row {
+  @apply contents;
+}
+
+.profile-label {
+  @apply uppercase whitespace-nowrap;
+}
+
+.profile-value {
+  @apply text-interactive text-right leading-xs flex items-center justify-end;
+}
+
+.status-indicator {
+  @apply inline-block w-2xs h-2xs rounded-full mr-xs bg-active;
+  box-shadow: 0 0 0 1px var(--color-frame);
+}
+
+.mobile-project-btn {
+  display: none !important;
+  @apply w-full text-center justify-center items-center mb-xl cursor-pointer;
+
+  @media (max-width: 1023px) {
+    display: flex !important;
+  }
+}

@@ -1,0 +1,48 @@
+@import './buttons.utils';
+@import '../utils/rem';
+
+.button {
+  @extend %button-reset;
+  @apply
+    transition-all
+    not-italic
+    text-interactive
+    no-underline
+    visited:text-interactive
+    hover:text-hover
+    active:text-active
+    active:no-underline
+    border-solid
+    border-2
+    p-sm
+    border-fg-accent
+    hover:border-fg-accent
+    hover:bg-fg-accent
+    rounded-lg
+    focus-visible:text-hover
+    focus-visible:outline-2
+    focus-visible:no-underline
+    focus-visible:outline-dotted
+    focus-visible:outline-focus;
+}
+
+.btn-text {
+  @apply
+    flex
+    items-center
+    h-full
+    px-xs
+    rounded-xl
+    transition-all
+    border-none
+    hover:bg-surface-raised
+    hover:text-hover
+    focus:bg-surface-raised
+    active:bg-surface-raised
+    active:text-active
+    bg-transparent;
+
+  &:hover {
+    box-shadow: var(--shadow-button) inset;
+  }
+}

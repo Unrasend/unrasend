@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink, useParams, Navigate } from 'react-router-dom';
 import { projects } from './ProjectsList';
 import diploma from '../../assets/images/diploma.jpg';
+import './Home.scss';
 
 const Home: React.FC = () => {
   const { projectId } = useParams();
@@ -13,7 +14,7 @@ const Home: React.FC = () => {
 
   return (
   <>
-    <header className="mb-3xl border-l-1 border-f-1 pl-md">
+    <header className="home-header">
       <h1 className="mb-1">
         Hello, I'm Vlad, seasoned software engineer specialized in building complex UI.
       </h1>
@@ -22,22 +23,22 @@ const Home: React.FC = () => {
       </p>
     </header>
 
-    <label htmlFor="burger" className="button w-full text-center xs:block hidden mb-xl cursor-pointer">
+    <label htmlFor="burger" className="button mobile-project-btn">
       Choose Project
     </label>
 
-    <section className="dashboard-grid">
-      <article className="section-block">
+    <section className="home-grid">
+      <article className="home-card xs:hidden">
         <header>
-          <h2>Projects</h2>
+          <h2 className="card-title">Projects</h2>
         </header>
-        <div className="space-y-sm h-full flex flex-col items-start">
+        <div className="project-list-wrapper">
           {projects.map((project) => (
             <NavLink
               key={project.id}
               to={`/projects/${project.id}`}
               className={({ isActive }) =>
-                `link h1 !text-xl w-full !h-[62px] block ${isActive ? '!text-active' : ''}`
+                `project-nav-link ${isActive ? '!text-active' : ''}`
               }
             >
               -&nbsp;{project.title}
@@ -48,33 +49,36 @@ const Home: React.FC = () => {
         <br/>
 
         <header className="mb-md">
-          <h2>Profile</h2>
+          <h2 className="card-title">Profile</h2>
         </header>
-        <div className="space-y-sm">
-          <div className="block-row">
-            <span className="block-label text">Availability&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</span>
-            <span className="block-value flex items-center text">
+        <div className="profile-list">
+          <div className="profile-row">
+            <span className="profile-label text">Availability</span>
+            <span>:</span>
+            <span className="profile-value text">
               <span className="status-indicator"></span>1 month
             </span>
           </div>
-          <div className="block-row">
-            <span className="block-label text">Education&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</span>
-            <a href={diploma} target='_blank' className="text-right">M.Sc. CS</a>
+          <div className="profile-row">
+            <span className="profile-label text">Education</span>
+            <span>:</span>
+            <a href={diploma} target='_blank' className="profile-value">M.Sc. CS</a>
           </div>
-          <div className="block-row">
-            <span className="block-label text">Experience&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</span>
-            <span className="block-value text">10 Years</span>
+          <div className="profile-row">
+            <span className="profile-label text">Experience</span>
+            <span>:</span>
+            <span className="profile-value text">10 Years</span>
           </div>
         </div>
       </article>
 
-      <article className="section-block grid-cols-2">
+      <article className="home-card">
         {activeProject?.content1}
       </article>
     </section>
 
-    <section className="dashboard-grid-1">
-      <article className="section-block">
+    <section className="home-bottom-grid">
+      <article className="home-card">
         {activeProject?.content2}
       </article>
     </section>

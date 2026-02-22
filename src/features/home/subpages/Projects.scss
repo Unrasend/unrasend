@@ -1,0 +1,27 @@
+.project-content {
+  @apply flex flex-wrap;
+}
+
+.project-title {
+  @apply w-[50%] xs:w-full;
+}
+
+.project-link {
+  @apply flex w-[50%] xs:w-full items-center justify-end xs:justify-start text-lg;
+}
+
+.project-desc {
+  @apply flex-1 block;
+}
+
+.project-demo-box {
+  @apply mt-4 overflow-hidden rounded-md w-full h-[clamp(30rem,60vh,50rem)] xs:h-[clamp(15rem,50vh,30rem)];
+}
+
+.project-demo-content {
+  @apply w-full h-full object-contain relative z-[20];
+
+  &.aspect-video {
+    aspect-ratio: 16 / 9;
+  }
+}

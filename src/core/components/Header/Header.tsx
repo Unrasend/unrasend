@@ -3,6 +3,8 @@ import React, { useRef } from 'react';
 import './Header.scss';
 import { isMobileDevice } from '../../../shared/responsive.util.ts';
 import { ScrollService } from '../../services/scroll.service.ts';
+import daySvg from '../../../assets/icons/day.svg';
+import nightSvg from '../../../assets/icons/night.svg';
 import cvPdf from '../../../assets/vlad_luchkov_en.pdf';
 import { projects } from '../../../features/home/ProjectsList';
 import { NavLink } from 'react-router-dom';
@@ -10,6 +12,17 @@ import { NavLink } from 'react-router-dom';
 const Header = () => {
   const burgerRef = useRef<HTMLInputElement>(null);
   const scrollService = useInjection(ScrollService);
+
+  const [theme, setTheme] = React.useState<'light' | 'dark'>(
+    (document.documentElement.dataset.theme as 'light' | 'dark') || 'light'
+  );
+
+  const toggleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
+    document.documentElement.dataset.theme = newTheme;
+  };
 
   const onLinkClick = () => {
     if (!isMobileDevice()) {
@@ -24,32 +37,29 @@ const Header = () => {
 
   return (
     <header className="header">
-      <a href="#" className="logo link after:hidden before:hidden sm:!hidden">Vladyslav Luchkov</a>
-      <a href="#" className="logo after:hidden before:hidden mx-auto md:h-3xl md:leading-[2.5rem]">Senior Frontend Engineer</a>
+      <a href="#" className="logo link">Vladyslav Luchkov</a>
+      <a href="#" className="logo link ml-auto hidden md:block">Senior Frontend Engineer</a>
 
       <input
         ref={burgerRef}
         id="burger"
         type="checkbox"
-        className="hidden"
+        className="burger-input hidden"
         onChange={(e) => {
           scrollService.toggleScroll(!e.target.checked);
         }}
       />
 
-      <label
-       className="burger"
-       htmlFor="burger"
-      >
-       <span></span>
-       <span></span>
-       <span></span>
+      <label className="burger hidden md:block" htmlFor="burger">
+        <span className="burger-line"></span>
+        <span className="burger-line"></span>
+        <span className="burger-line"></span>
       </label>
-      
-      <nav className="xs:!flex !hidden overflow-hidden">
-        <ul>
+
+      <nav className="nav-menu hidden md:flex">
+        <ul className="nav-list">
           {projects.map((project) => (
-            <li key={project.id}>
+            <li key={project.id} className="nav-item">
               <NavLink
                 to={`/projects/${project.id}`}
                 className="link !text-active"
@@ -60,10 +70,35 @@ const Header = () => {
             </li>
           ))}
         </ul>
+
+        <a href={cvPdf} className="link cv-link" download="vlad_luchkov_cv.pdf" onClick={onLinkClick}>Download CV</a>
+
+        <button
+          className="theme-toggle-btn"
+          onClick={toggleTheme}
+          aria-label="Toggle Theme"
+        >
+          {theme === 'light' ? (
+            <img src={daySvg} className="w-5 h-5 opacity-80" alt="Dark theme" />
+          ) : (
+            <img src={nightSvg} className="w-5 h-5 opacity-80" alt="Light theme" />
+          )}
+        </button>
       </nav>
 
-      <a href={cvPdf} className="link xs:text-active" download="vlad_luchkov_cv.pdf" onClick={onLinkClick}>Download CV</a>
+      <a href={cvPdf} className="link cv-link ml-auto md:!hidden" download="vlad_luchkov_cv.pdf" onClick={onLinkClick}>Download CV</a>
 
+      <button
+        className="theme-toggle-btn md:hidden"
+        onClick={toggleTheme}
+        aria-label="Toggle Theme"
+      >
+        {theme === 'light' ? (
+          <img src={nightSvg} className="w-5 h-5 opacity-80" alt="Dark theme" />
+        ) : (
+          <img src={daySvg} className="w-5 h-5 opacity-80" alt="Light theme" />
+        )}
+      </button>
 
     </header>
   );

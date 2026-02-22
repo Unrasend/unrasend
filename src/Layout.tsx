@@ -24,11 +24,11 @@ const Layout: ReactFCEmptyProps = () => {
     <div className="terminal" ref={terminalRef}>
       <Header></Header>
 
-      <main className="p-5xl xs:p-md">
+      <main className="main-content">
         <Outlet />
       </main>
 
-      <Footer className="block mt-auto"></Footer>
+      <Footer className="layout-footer"></Footer>
     </div>
   </div>;
 }

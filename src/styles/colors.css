@@ -1,20 +1,77 @@
 :root {
-  --c-bg-1: hsl(236, 53%, 6%);
-  --c-bg-1-hsl: 236, 53%, 6%;
-  --c-bg-2: hsl(257, 23%, 16%);
-  --c-bg-2-hsl: 257, 23%, 16%;
-  --c-alert-hsl: 359, 100%, 39%;
-  --c-f-1: hsl(211, 80%, 72%);
-  --c-f-3: hsl(209, 79%, 38%);
-  --c-f-1-hsl: 211, 80%, 72%;
-  --c-f-2: hsl(198, 20%, 75%);
-  --c-interactive: white;
-  --c-active: hsla(120, 70%, 50%);
-  --c-focus: hsl(60, 80%, 50%);
-  --c-hover: hsla(120, 80%, 70%);
-  --c-alert: hsl(359, 100%, 35%);
-  --c-highlight: hsl(359, 100%, 35%);
-  --c-bg-body: #000;
-  --c-scroll-bg: #262626;
-  --c-scroll-thumb: #5e5e5e;
+  --color-surface: hsla(0, 0%, 98%, 1);
+  --color-surface-hsl: 0, 0%, 98%;
+  --color-surface-raised: hsla(0, 0%, 100%, 1);
+  --color-surface-raised-hsl: 0, 0%, 100%;
+  --color-surface-base: hsla(0, 0%, 7%, 1);
+  --color-frame: hsla(0, 0%, 7%, 1);
+
+  --color-text: hsla(236, 53%, 12%, 1);
+  --color-text-hsl: 236, 53%, 12%;
+  --color-text-muted: hsla(236, 53%, 20%, 1);
+  --color-text-accent: hsla(45, 100%, 45%, 1);
+
+  --color-interactive: hsla(236, 53%, 12%, 1);
+  --color-active: hsla(236, 53%, 25%, 1);
+  --color-focus: hsla(236, 53%, 20%, 1);
+  --color-hover: hsla(236, 53%, 6%, 1);
+  --color-danger: hsla(359, 100%, 39%, 1);
+  --color-danger-hsl: 359, 100%, 39%;
+  --color-brand: hsla(45, 100%, 45%, 1);
+
+  --color-scrollbar-track: hsla(0, 0%, 90%, 1);
+  --color-scrollbar-thumb: hsla(0, 0%, 64%, 1);
+
+  --shadow-button: 0 0 .2rem .1rem hsla(0, 0%, 0%, 0.15);
+  --color-border: hsla(236, 53%, 12%, 0.2);
+  --shadow-card: 0 0 .75rem .15rem hsla(0, 0%, 0%, 0.1);
+  --color-scanline: hsla(0, 0%, 0%, 0.15);
+  --color-shadow-inset: hsla(0, 0%, 0%, 0.75);
+  --color-vignette: hsla(0, 0%, 0%, 0.75);
+  --color-interactive-hover: hsla(236, 53%, 6%, 0.05);
+
+  --color-header: var(--color-brand);
+  --color-footer: var(--color-brand);
+  --color-heading: hsla(0, 0%, 0%, 1);
+  --color-frame-border: hsla(39, 100%, 50%, 1);
+  --color-modal-fg: var(--color-text);
+}
+
+[data-theme="dark"] {
+  --color-surface: hsla(236, 53%, 6%, 1);
+  --color-surface-hsl: 236, 53%, 6%;
+  --color-surface-raised: hsla(257, 23%, 16%, 1);
+  --color-surface-raised-hsl: 257, 23%, 16%;
+  --color-surface-base: hsla(0, 0%, 7%, 1);
+  --color-frame: hsla(0, 0%, 7%, 1);
+
+  --color-text: hsla(211, 80%, 72%, 1);
+  --color-text-hsl: 211, 80%, 72%;
+  --color-text-muted: hsla(198, 20%, 75%, 1);
+  --color-text-accent: hsla(209, 79%, 38%, 1);
+
+  --color-interactive: hsla(0, 0%, 100%, 1);
+  --color-active: hsla(120, 70%, 50%, 1);
+  --color-focus: hsla(60, 80%, 50%, 1);
+  --color-hover: hsla(120, 80%, 70%, 1);
+  --color-danger: hsla(359, 100%, 35%, 1);
+  --color-danger-hsl: 359, 100%, 39%;
+  --color-brand: hsla(359, 100%, 35%, 1);
+
+  --color-scrollbar-track: hsla(0, 0%, 15%, 1);
+  --color-scrollbar-thumb: hsla(0, 0%, 37%, 1);
+
+  --shadow-button: 0 0 .2rem .1rem hsla(0, 0%, 0%, 0.75);
+  --color-border: hsla(211, 80%, 72%, 0.45);
+  --shadow-card: 0 0 .75rem .15rem hsla(0, 0%, 0%, 0.75);
+  --color-scanline: hsla(0, 0%, 0%, 0.25);
+  --color-shadow-inset: hsla(0, 0%, 0%, 0.75);
+  --color-vignette: hsla(0, 0%, 0%, 0.75);
+  --color-interactive-hover: hsla(0, 0%, 100%, 0.1);
+
+  --color-header: var(--color-danger);
+  --color-footer: var(--color-surface);
+  --color-heading: var(--color-active);
+  --color-frame-border: hsla(var(--color-danger-hsl), 0.45);
+  --color-modal-fg: hsla(0, 0%, 100%, 1);
 }
