@@ -2,36 +2,41 @@
 
 .text {
   font-size: 1rem;
+
+  @media #{$small} {
+    @apply leading-[1.8rem];
+    font-size: 1.2rem;
+  }
 }
 
 h1, .h1 {
   font-size: calc(1.6rem);
-  @apply text-heading;
+  @apply text-heading leading-[1.8rem];
 }
 
 h2, .h2 {
   font-size: calc(1.5rem);
-  @apply text-heading;
+  @apply text-heading leading-[1.8rem];
 }
 
 h3, .h3 {
   font-size: calc(1.4rem);
-  @apply text-heading;
+  @apply text-heading leading-[1.8rem];
 }
 
 h4, .h4 {
   font-size: calc(1.3rem);
-  @apply text-heading;
+  @apply text-heading leading-[1.8rem];
 }
 
 h5, .h5 {
   font-size: calc(1.2rem);
-  @apply text-heading;
+  @apply text-heading leading-[1.8rem];
 }
 
 h6, .h6 {
   font-size: calc(1.1rem);
-  @apply text-heading;
+  @apply text-heading leading-[1.8rem];
 }
 
 hr {

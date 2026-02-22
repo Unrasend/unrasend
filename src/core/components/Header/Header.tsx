@@ -37,8 +37,8 @@ const Header = () => {
 
   return (
     <header className="header">
-      <a href="#" className="logo link">Vladyslav Luchkov</a>
-      <a href="#" className="logo link ml-auto hidden md:block">Senior Frontend Engineer</a>
+      <span className="logo link">Vladyslav Luchkov</span>
+      <span className="logo link ml-auto !hidden lg:block">Senior Frontend Engineer</span>
 
       <input
         ref={burgerRef}
@@ -93,7 +93,7 @@ const Header = () => {
         onClick={toggleTheme}
         aria-label="Toggle Theme"
       >
-        {theme === 'light' ? (
+        {theme === 'dark' ? (
           <img src={nightSvg} className="w-5 h-5 opacity-80" alt="Dark theme" />
         ) : (
           <img src={daySvg} className="w-5 h-5 opacity-80" alt="Light theme" />

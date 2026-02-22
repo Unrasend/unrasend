@@ -18,7 +18,7 @@ const Footer: React.FC<{ className: string }> = ({ className }) => {
       bg-footer
       justify-between
       border-surface-base
-      border-t-2
+      border-t-1
       ${className}
     `}
     >
