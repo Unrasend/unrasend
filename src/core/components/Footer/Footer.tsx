@@ -4,7 +4,6 @@ const Footer: React.FC<{ className: string }> = ({ className }) => {
   return (
     <footer
       className={`
-      mt-auto
       flex
       xs:flex-col
       items-center

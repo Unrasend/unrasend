@@ -23,13 +23,15 @@ const Layout: ReactFCEmptyProps = () => {
     <div className="overlay"></div>
 
     <div className="terminal" ref={terminalRef}>
-      <Header></Header>
-      <GearScrollbar>
-        <main className="main-content">
-          <Outlet />
-        </main>
-      </GearScrollbar>
-      <Footer className="layout-footer"></Footer>
+      <Header />
+      <GearScrollbar 
+        mainContent={
+          <main className="main-content flex-grow">
+            <Outlet />
+          </main>
+        }
+        footerContent={<Footer className="layout-footer" />}
+      />
     </div>
 
   </div>;

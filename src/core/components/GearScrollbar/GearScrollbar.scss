@@ -8,7 +8,7 @@
     position: absolute; 
     height: 56px; 
     left: -32.5px; 
-    top: calc(80% - 28px); // center vertically (28px = half of 56px gear height)
+    top: calc(75% - 28px); // center vertically (28px = half of 56px gear height)
     transform: rotate(-7deg);
     width: 56px;  
     z-index: 1000;
@@ -26,18 +26,16 @@
   }
 
   .page {
-    margin-top: -13px;
-    margin-left: 48px; 
     position: relative;
-    top: 12.75px;      
+    top: 0;      
     
     .rack {
       display: inline-block;
       height: 100%;
       position: absolute;
       width: 10px; 
-      left: -25px;
-      top: 0;
+      left: 23px;
+      top: -13;
       
       background-color: var(--color-border);
       -webkit-mask-image: url("../../../assets/icons/rack.svg");
@@ -49,6 +47,10 @@
     }
     
     .content {
+      margin-top: 0px;
+      margin-left: 48px; 
+      @apply md:m-0;
+
       left: 4px; 
       padding: 0 7.5px; 
       position: relative;
@@ -56,6 +58,9 @@
       min-height: 100vh;
     }
   }
+  
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 // Custom scrollbar thumb styling
