@@ -4,7 +4,7 @@ import { ProjectDescriptiveLayout } from '../../components/ProjectDescriptiveLay
 export const PulsewayDescriptive = () => (
   <ProjectDescriptiveLayout
     technologies={[
-      "TypeScript, Angular, RxJS, NgXS, SCSS, Webpack, later migrated to Vite, Jasmine, .Net 4.5"
+      "TypeScript, Angular, RxJS, NgXS, SCSS, Webpack, later migrated to Vite, Playwright, Jasmine, .Net 4.5"
     ]}
     contributions={[
       "Implemented reusable data-table component with filtering, sorting, pagination, and column selection, that was used in several places across the product.",
