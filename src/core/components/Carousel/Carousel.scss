@@ -34,7 +34,7 @@
 }
 
 .carousel-container {
-  @apply w-full grid min-w-0 max-w-full overflow-hidden;
+  @apply relative z-[51] w-full grid min-w-0 max-w-full overflow-hidden;
   grid-template-rows: auto 1fr auto;
 }
 
