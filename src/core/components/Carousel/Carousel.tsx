@@ -209,7 +209,7 @@ export const Carousel: React.FC<CarouselProps> = ({ items, className = '', conte
             <div className="carousel-header">
               {item.title ? <h3 className="mb-0">{item.title}</h3> : <div />}
               {!item.disableFullScreen && (
-                <button onClick={() => toggleFullScreen(domToLogical(domIndex))} className="button btn-text text-lg">
+                <button onClick={() => toggleFullScreen(domToLogical(domIndex))} className="button-material text-lg">
                   Full screen
                 </button>
               )}
@@ -226,9 +226,9 @@ export const Carousel: React.FC<CarouselProps> = ({ items, className = '', conte
       </div>
 
       <div className="carousel-controls">
-        <button onClick={prevMain} className="button text-lg" disabled={items.length <= 1}>{'<'}</button>
+        <button onClick={prevMain} className="button-material text-lg w-12 h-12 !p-0" disabled={items.length <= 1}>{'<'}</button>
         <span className="h4">{currentIndex + 1}/{items.length}</span>
-        <button onClick={nextMain} className="button text-lg" disabled={items.length <= 1}>{'>'}</button>
+        <button onClick={nextMain} className="button-material text-lg w-12 h-12 !p-0" disabled={items.length <= 1}>{'>'}</button>
       </div>
 
       {isFullScreen && createPortal(
@@ -238,14 +238,14 @@ export const Carousel: React.FC<CarouselProps> = ({ items, className = '', conte
         >
           <button
             onClick={() => toggleFullScreen()}
-            className="carousel-modal-close"
+            className="carousel-modal-close button-material w-16 h-16 !p-0"
           >✕</button>
 
           <div className="carousel-modal-title-wrapper">
             {items[modalIndex]?.title && <h2 className="text-xl">{items[modalIndex]?.title}</h2>}
           </div>
 
-          <button onClick={() => navigateModal(-1)} className="carousel-modal-nav nav-prev">{'<'}</button>
+          <button onClick={() => navigateModal(-1)} className="carousel-modal-nav button-material nav-prev w-20 h-20 !p-0">{'<'}</button>
 
           <div {...modalSwipeHandlers} className="carousel-modal-swipe-wrapper">
             <div
@@ -260,7 +260,7 @@ export const Carousel: React.FC<CarouselProps> = ({ items, className = '', conte
             </div>
           </div>
 
-          <button onClick={() => navigateModal(1)} className="carousel-modal-nav nav-next">{'>'}</button>
+          <button onClick={() => navigateModal(1)} className="carousel-modal-nav button-material nav-next w-20 h-20 !p-0">{'>'}</button>
 
           <div className="carousel-modal-pager">
             {modalIndex + 1} / {items.length}

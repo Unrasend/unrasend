@@ -15,10 +15,12 @@
     border-solid
     border-2
     p-sm
-    border-fg-accent
-    hover:border-fg-accent
-    hover:bg-fg-accent
-    rounded-lg
+    border-border
+    hover:border-border
+    flex
+    justify-center
+    items-center
+    rounded-none
     focus-visible:text-hover
     focus-visible:outline-2
     focus-visible:no-underline
@@ -26,7 +28,7 @@
     focus-visible:outline-focus;
 }
 
-.btn-text {
+.button-text {
   @apply
     flex
     items-center
@@ -44,5 +46,127 @@
 
   &:hover {
     box-shadow: var(--shadow-button) inset;
+  }
+}
+
+.button {
+  --button-color: var(--color-interactive);
+  --button-hover: var(--color-hover);
+  --button-active-fill: var(--color-active);
+
+  &.offset {
+    box-shadow: 4px 4px 0 0 var(--button-color);
+
+    &:hover,
+    &:focus-visible {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0 0 var(--button-hover);
+      border-color: var(--button-hover);
+      color: var(--button-hover);
+    }
+
+    &.active {
+      background-color: var(--button-active-fill);
+      border-color: var(--button-active-fill);
+      color: var(--color-surface);
+      box-shadow: 4px 4px 0 0 var(--button-active-fill);
+
+      &:hover,
+      &:focus-visible {
+        transform: translate(2px, 2px);
+        box-shadow: 2px 2px 0 0 var(--button-hover);
+        background-color: var(--button-hover);
+        border-color: var(--button-hover);
+      }
+    }
+  }
+}
+
+.button-material {
+  @extend %button-reset;
+  border: none;
+  background-color: transparent;
+  background-position: center;
+  transition: background 0.8s, color 0.2s;
+  @apply
+    flex
+    justify-center
+    items-center
+    p-sm
+    rounded-full
+    text-interactive;
+
+  &:hover,
+  &:focus-visible {
+    background: var(--color-interactive-hover) radial-gradient(circle, transparent 1%, var(--color-interactive-hover) 1%) center/15000%;
+    color: var(--color-hover);
+  }
+
+  &:active {
+    background-color: hsla(var(--color-text-hsl), 0.15);
+    background-size: 100%;
+    transition: background 0s;
+    color: var(--color-active);
+  }
+}
+
+// Lavinia Social Buttons Effect
+.effect.lavinia {
+  display: flex;
+  justify-content: center;
+
+  .buttons {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    border: 2px solid var(--color-border);
+    color: var(--color-text);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: color 0.3s ease, border-color 0.3s ease;
+
+    svg {
+      width: 1.5rem;
+      height: 1.5rem;
+      position: relative;
+      z-index: 3;
+      transition: color 0.3s ease;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--color-interactive);
+      border-radius: 50%;
+      z-index: 2;
+      transform: scale(0);
+      transition: transform 0.3s ease;
+    }
+
+    &:hover {
+      border-color: var(--color-interactive);
+      color: var(--color-surface); // Contrast color for the icon, white in light, dark in dark mode
+
+      svg {
+        color: var(--color-surface); // For stroke/fill inheritance
+      }
+
+      &::before {
+        transform: scale(1);
+      }
+    }
   }
 }

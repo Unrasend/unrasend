@@ -41,8 +41,12 @@ const Header = () => {
       <div className="absolute top-[0.5rem] left-[1rem]">
         <AnimatedGears />
       </div>
-      <a href="#" className="logo header-link ml-xs">Vladyslav Luchkov</a>
-      <a href="#" className="logo header-link ml-auto lg:hidden">Senior Frontend Engineer</a>
+      <span className="text-xl text-interactive md:text-md flex items-center h-full sm:pt-sm pl-md md:pl-xs whitespace-nowrap">
+        Vladyslav Luchkov
+      </span>
+      <span className="text-xl text-interactive md:text-lg flex items-center justify-center flex-1 whitespace-nowrap sm:hidden">
+        Senior Frontend Engineer
+      </span>
 
       <input
         ref={burgerRef}
@@ -75,10 +79,13 @@ const Header = () => {
           ))}
         </ul>
 
-        <a href={cvPdf} className="header-link" download="vlad_luchkov_cv.pdf" onClick={onLinkClick}>Download CV</a>
+        <a href={cvPdf} className="button-material !px-md" download="vlad_luchkov_cv.pdf" onClick={onLinkClick}>Download CV</a>
 
+        <span className="text-xl text-interactive md:text-md flex items-center h-full whitespace-nowrap hidden sm:flex">
+          Senior Frontend Engineer
+        </span>
         <button
-          className="theme-toggle-btn"
+          className="theme-toggle-button button-material w-12 h-12 !p-0"
           onClick={toggleTheme}
           aria-label="Toggle Theme"
         >
@@ -90,10 +97,10 @@ const Header = () => {
         </button>
       </nav>
 
-      <a href={cvPdf} className="header-link ml-auto md:!hidden" download="vlad_luchkov_cv.pdf" onClick={onLinkClick}>Download CV</a>
+      <a href={cvPdf} className="button-material !px-md ml-auto md:!hidden" download="vlad_luchkov_cv.pdf" onClick={onLinkClick}>Download CV</a>
 
       <button
-        className="theme-toggle-btn md:hidden"
+        className="theme-toggle-button button-material w-12 h-12 !p-0 md:hidden"
         onClick={toggleTheme}
         aria-label="Toggle Theme"
       >

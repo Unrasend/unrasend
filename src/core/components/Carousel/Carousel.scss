@@ -39,7 +39,13 @@
 }
 
 .carousel-header {
-  @apply flex justify-between items-center mb-sm;
+  @apply flex justify-between items-center mb-sm border-none;
+
+  h3 {
+    border-bottom: none !important;
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+  }
 }
 
 .carousel-controls {
@@ -51,7 +57,7 @@
 }
 
 .carousel-modal-close {
-  @apply absolute top-md right-md text-2xl hover:opacity-80 pointer-events-auto cursor-pointer text-modal-fg z-50 bg-transparent border-none;
+  @apply absolute top-md right-md text-2xl pointer-events-auto cursor-pointer text-modal-fg z-50 bg-transparent border-none;
 }
 
 .carousel-modal-title-wrapper {
@@ -59,7 +65,7 @@
 }
 
 .carousel-modal-nav {
-  @apply absolute top-1/2 -translate-y-1/2 text-4xl hover:opacity-80 cursor-pointer text-modal-fg z-50 bg-transparent border-none;
+  @apply absolute top-1/2 -translate-y-1/2 text-4xl cursor-pointer text-modal-fg z-50 bg-transparent border-none;
 
   &.nav-prev {
     @apply left-md;

@@ -106,7 +106,7 @@
       @apply h-auto;
     }
 
-    .theme-toggle-btn {
+    .theme-toggle-button {
       @apply mx-auto m-0 mt-4;
     }
 
@@ -131,7 +131,7 @@
   }
 }
 
-.theme-toggle-btn {
+.theme-toggle-button {
   @apply w-8 h-8 flex items-center justify-center rounded-full transition-colors ml-4 focus:outline-none hover:bg-interactive-hover;
 
   [data-theme="dark"] & img {

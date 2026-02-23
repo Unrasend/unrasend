@@ -6,7 +6,7 @@ import planner3 from '../../../../assets/images/planner5d/3.png';
 
 export const Planner5dMain = () => (
   <ProjectMainLayout
-    title="Planner 5D - Home Design Tool. 2024 - ongoing"
+    title="Planner 5D - Home Design Tool. 2024 - now"
     links={[{ label: 'Website', url: 'http://planner5.com' }]}
     description="Advanced 2D/3D home design tool used by ~65.5M of users."
     carouselItems={[

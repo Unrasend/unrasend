@@ -23,7 +23,7 @@ const Home: React.FC = () => {
       </p>
     </header>
 
-    <label htmlFor="burger" className="button mobile-project-btn">
+    <label htmlFor="burger" className="button offset mobile-project-button">
       Choose Project
     </label>
 
@@ -38,10 +38,10 @@ const Home: React.FC = () => {
               key={project.id}
               to={`/projects/${project.id}`}
               className={({ isActive }) =>
-                `project-nav-link ${isActive ? '!text-active' : ''}`
+                `button offset project-nav-link ${isActive ? 'active' : ''}`
               }
             >
-              -&nbsp;{project.title}
+              {project.title}
             </NavLink>
           ))}
         </div>
