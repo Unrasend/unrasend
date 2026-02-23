@@ -60,7 +60,7 @@ const Header = () => {
         <span className="burger-line"></span>
       </label>
 
-      <nav className="nav-menu hidden md:flex">
+      <nav className="nav-menu hidden">
         <ul className="nav-list">
           {projects.map((project) => (
             <li key={project.id} className="nav-item">

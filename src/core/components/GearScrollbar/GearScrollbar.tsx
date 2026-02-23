@@ -15,7 +15,7 @@ const GearScrollbar: React.FC<GearScrollbarProps> = ({ mainContent, footerConten
 
   useEffect(() => {
     const subscription = screenSizes$.subscribe(sizes => {
-      setHideGearAndRack(sizes.xs || sizes.sm);
+      setHideGearAndRack(sizes.xs || sizes.sm || sizes.md);
     });
     return () => subscription.unsubscribe();
   }, []);

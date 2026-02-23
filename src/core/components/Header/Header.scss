@@ -20,7 +20,7 @@
   @apply
   sticky
   top-0
-  z-[1]
+  z-[50]
   flex
   overflow-hidden
   items-center
@@ -34,10 +34,7 @@
   justify-between
   border-surface-base
   border-b-1
-  transition-all
-  md:flex-col
-  md:h-auto
-  md:overflow-visible;
+  transition-all;
 
   .burger {
     @apply
@@ -82,27 +79,39 @@
 
   &:has(.burger-input:checked) {
     @apply
-    absolute
+    fixed
     top-0
     left-0
     flex-col
-    h-full
+    h-[100dvh]
     w-full
     p-sm
     bg-header
     transition-all
-    z-50;
+    z-[100];
 
     .nav-menu {
-      @apply flex flex-col items-start justify-start pt-md gap-md;
+      @apply flex flex-col items-center justify-start pt-[4rem] gap-md w-full;
     }
 
     .nav-list {
-      @apply flex-col translate-x-0;
+      @apply flex-col translate-x-0 flex gap-6 w-full;
+    }
+
+    .nav-item {
+      @apply mr-0 flex justify-center w-full;
     }
 
     .logo {
       @apply h-auto;
+    }
+
+    .theme-toggle-btn {
+      @apply mx-auto m-0 mt-4;
+    }
+
+    .header-link {
+      @apply ml-0 justify-center;
     }
   }
 
