@@ -3,19 +3,19 @@
 }
 
 .project-title {
-  @apply w-[50%] xs:w-full;
+  @apply self-center flex-1 pr-md mb-0 xs:mb-xs xs:w-full text-lg;
 }
 
 .project-link {
-  @apply flex w-[50%] xs:w-full items-center justify-end xs:justify-start text-lg;
+  @apply flex items-center justify-end gap-md ml-auto -mr-6 xs:mr-0 xs:w-full xs:justify-start xs:mb-md text-lg;
 }
 
 .project-desc {
-  @apply flex-1 block;
+  @apply w-full block mt-md xs:mt-0 xs:text-md;
 }
 
 .project-demo-box {
-  @apply mt-4 overflow-hidden rounded-md w-full h-[clamp(30rem,60vh,50rem)] xs:h-[clamp(15rem,50vh,30rem)];
+  @apply mt-4 overflow-hidden rounded-md w-full h-[800px] xs:h-[clamp(15rem,50vh,30rem)];
 }
 
 .project-demo-content {

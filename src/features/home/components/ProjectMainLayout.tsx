@@ -16,18 +16,19 @@ export interface ProjectMainLayoutProps {
 export const ProjectMainLayout: React.FC<ProjectMainLayoutProps> = ({ title, links, description, carouselItems }) => (
   <article className="project-content">
     <h3 className="project-title">{title}</h3>
-    
+
     {links?.length === 1 ? (
-      <a className="project-link" href={links[0]?.url} target="_blank" rel="noreferrer">
-        {links[0]?.label}
-      </a>
+      <div className="project-link gap-4">
+        <a className="button-material !px-2 !py-2 !text-lg md:!px-6 md:!py-3 md:!text-xl text-center" href={links[0]?.url} target="_blank" rel="noreferrer">
+          {links[0]?.label}
+        </a>
+      </div>
     ) : links?.length > 1 ? (
-      <div className="flex w-[50%] items-center justify-end gap-2">
-        {links.map((link, index) => (
-          <React.Fragment key={link.url}>
-            <a className="text-lg" href={link.url} target="_blank" rel="noreferrer">{link.label}</a>
-            {index < links.length - 1 && <span>|</span>}
-          </React.Fragment>
+      <div className="project-link gap-4">
+        {links.map((link) => (
+          <a key={link.url} className="button-material !px-2 !py-2 !text-lg md:!px-6 md:!py-3 md:!text-xl text-center" href={link.url} target="_blank" rel="noreferrer">
+            {link.label}
+          </a>
         ))}
       </div>
     ) : null}

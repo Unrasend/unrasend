@@ -28,7 +28,7 @@ const Home: React.FC = () => {
     </label>
 
     <section className="home-grid">
-      <article className="home-card xs:hidden">
+      <article className="home-card sm:!hidden">
         <header>
           <h2 className="card-title">Projects</h2>
         </header>

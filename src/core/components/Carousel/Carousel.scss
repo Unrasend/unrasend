@@ -1,3 +1,5 @@
+@import "../../../styles/utils/responsive";
+
 .carousel-viewport {
   @apply w-full h-full min-h-0 relative flex overflow-x-scroll scroll-smooth snap-x snap-mandatory;
   -webkit-overflow-scrolling: touch;
@@ -20,6 +22,10 @@
   @apply flex w-[80%] h-[80%] overflow-x-scroll scroll-smooth snap-x snap-mandatory;
   scrollbar-width: none;
 
+  @media #{$small} {
+    @apply w-[90%] h-[90%];
+  }
+
   &::-webkit-scrollbar {
     display: none;
   }
@@ -35,7 +41,7 @@
 
 .carousel-container {
   @apply relative z-[51] w-full grid min-w-0 max-w-full overflow-hidden;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: 1fr 3rem;
 }
 
 .carousel-header {

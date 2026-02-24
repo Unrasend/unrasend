@@ -245,7 +245,7 @@ export const Carousel: React.FC<CarouselProps> = ({ items, className = '', conte
             {items[modalIndex]?.title && <h2 className="text-xl">{items[modalIndex]?.title}</h2>}
           </div>
 
-          <button onClick={() => navigateModal(-1)} className="carousel-modal-nav button-material nav-prev w-20 h-20 !p-0">{'<'}</button>
+          <button onClick={() => navigateModal(-1)} className="carousel-modal-nav xs:hidden button-material nav-prev w-20 h-20 !p-0">{'<'}</button>
 
           <div {...modalSwipeHandlers} className="carousel-modal-swipe-wrapper">
             <div
@@ -260,7 +260,7 @@ export const Carousel: React.FC<CarouselProps> = ({ items, className = '', conte
             </div>
           </div>
 
-          <button onClick={() => navigateModal(1)} className="carousel-modal-nav button-material nav-next w-20 h-20 !p-0">{'>'}</button>
+          <button onClick={() => navigateModal(1)} className="carousel-modal-nav xs:hidden button-material nav-next w-20 h-20 !p-0">{'>'}</button>
 
           <div className="carousel-modal-pager">
             {modalIndex + 1} / {items.length}

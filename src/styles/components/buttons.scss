@@ -110,7 +110,6 @@
   }
 }
 
-// Lavinia Social Buttons Effect
 .effect.lavinia {
   display: flex;
   justify-content: center;
@@ -158,10 +157,10 @@
 
     &:hover {
       border-color: var(--color-interactive);
-      color: var(--color-surface); // Contrast color for the icon, white in light, dark in dark mode
+      color: var(--color-surface);
 
       svg {
-        color: var(--color-surface); // For stroke/fill inheritance
+        color: var(--color-surface);
       }
 
       &::before {

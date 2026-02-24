@@ -63,6 +63,8 @@
   }
 
   .burger-input:checked + .burger {
+    transform: scale(1.4);
+    transform-origin: center right;
     .burger-line {
       opacity: 0;
       top: 50%;
@@ -86,20 +88,24 @@
     h-[100dvh]
     w-full
     p-sm
-    bg-header
+    bg-surface
     transition-all
     z-[100];
+
+    .hide-on-mobile-menu {
+      display: none !important;
+    }
 
     .nav-menu {
       @apply flex flex-col items-center justify-start pt-[4rem] gap-md w-full;
     }
 
     .nav-list {
-      @apply flex-col translate-x-0 flex gap-6 w-full;
+      @apply w-full translate-x-0;
     }
 
     .nav-item {
-      @apply mr-0 flex justify-center w-full;
+      @apply w-full flex justify-center;
     }
 
     .logo {

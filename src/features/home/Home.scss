@@ -21,6 +21,8 @@
   .project-nav-link {
     @apply flex items-center w-full text-xl no-underline hover:text-hover text-active;
     height: 62px !important;
+    --button-color: var(--color-border);
+    border-color: var(--color-border);
   }
 }
 
