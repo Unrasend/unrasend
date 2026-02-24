@@ -19,7 +19,7 @@
 }
 
 .project-demo-box {
-  @apply mt-4 overflow-hidden rounded-md w-full h-[800px] xs:h-[clamp(15rem,50vh,30rem)];
+  @apply mt-4 overflow-hidden rounded-md w-full h-[clamp(550px,75vh,1200px)] xs:h-[clamp(15rem,50vh,30rem)];
 }
 
 .project-demo-content {
