@@ -79,7 +79,7 @@ const Header = () => {
             <li key={project.id} className="nav-item m-0 flex justify-center w-full h-full items-stretch">
               <NavLink
                 to={`/projects/${project.id}`}
-                className={({ isActive }) => `button offset !text-2xl md:!text-xl sm:!text-lg xs:!text-sm w-full h-full p-8 md:p-6 sm:p-4 xs:p-3 flex items-center justify-center text-center leading-tight ${isActive ? 'active !text-surface' : '!text-interactive'}`}
+                className={({ isActive }) => `button offset !text-2xl md:!text-xl sm:!text-xl xs:!text-md w-full h-full p-8 md:p-6 sm:p-4 xs:p-3 flex items-center justify-center text-center leading-tight ${isActive ? 'active !text-surface' : '!text-interactive'}`}
                 onClick={onLinkClick}
               >
                 {project.title}
@@ -92,14 +92,14 @@ const Header = () => {
         </ul>
 
         <button
-          className="theme-toggle-button button-material w-12 h-12 !p-0 mt-auto mb-lg"
+          className="theme-toggle-button button-material w-[1rem] h-[1rem] md:w-[2rem] md:h-[2rem] !p-0 mt-auto mb-lg"
           onClick={toggleTheme}
           aria-label="Toggle Theme"
         >
-          {theme === 'light' ? (
-            <img src={daySvg} className="w-5 h-5 opacity-80" alt="Dark theme" />
+          {theme !== 'light' ? (
+            <img src={daySvg} className="w-[0.3rem] h-[0.3rem] md:w-[2rem] md:h-[2rem] opacity-80" alt="Dark theme" />
           ) : (
-            <img src={nightSvg} className="w-5 h-5 opacity-80" alt="Light theme" />
+            <img src={nightSvg} className="w[0.3rem] h-[0.3rem] md:w-[2rem] md:h-[2rem] opacity-80" alt="Light theme" />
           )}
         </button>
       </nav>
@@ -107,11 +107,11 @@ const Header = () => {
       <a href={cvPdf} className="button-material !px-md ml-auto md:!hidden text-xl md:text-lg hide-on-mobile-menu" download="vlad_luchkov_cv.pdf" onClick={onLinkClick}>Download CV</a>
 
       <button
-        className="theme-toggle-button button-material w-3xl h-3xl !p-0 md:hidden hide-on-mobile-menu"
+        className="theme-toggle-button button-material w-3xl h-3xl mb-[0.2rem] !p-0 md:hidden hide-on-mobile-menu"
         onClick={toggleTheme}
         aria-label="Toggle Theme"
       >
-        {theme === 'dark' ? (
+        {theme !== 'dark' ? (
           <img src={nightSvg} className="w-2xl h-2xl opacity-80" alt="Dark theme" />
         ) : (
           <img src={daySvg} className="w-2xl h-2xl opacity-80" alt="Light theme" />

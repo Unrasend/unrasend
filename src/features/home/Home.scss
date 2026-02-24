@@ -4,7 +4,7 @@
   @apply grid gap-md mb-xl grid-cols-[1fr_3fr] md:grid-cols-1;
 
   .home-card {
-    @apply border border-border p-xl bg-surface transition-colors flex flex-col font-mono min-w-0;
+    @apply border border-border p-xl bg-surface transition-colors flex flex-col font-mono min-w-0 sm:p-sm;
   }
 
   .card-title {
@@ -35,7 +35,7 @@
   grid-template-columns: 1fr;
 
   .home-card {
-    @apply border border-border p-xl bg-surface transition-colors flex flex-col font-mono min-w-0;
+    @apply border border-border p-xl bg-surface transition-colors flex flex-col font-mono min-w-0 sm:p-sm;
   }
 }
 

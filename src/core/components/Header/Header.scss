@@ -113,7 +113,7 @@
     }
 
     .theme-toggle-button {
-      @apply mx-auto m-0 mt-4;
+      @apply mx-auto m-0 mt-lg mb-lg;
     }
 
     .header-link {
@@ -138,7 +138,7 @@
 }
 
 .theme-toggle-button {
-  @apply w-8 h-8 flex items-center justify-center rounded-full transition-colors ml-4 focus:outline-none hover:bg-interactive-hover;
+  @apply items-center justify-center rounded-full transition-colors ml-md focus:outline-none hover:bg-interactive-hover;
 
   [data-theme="dark"] & img {
     filter: invert(1) brightness(2);

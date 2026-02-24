@@ -19,14 +19,14 @@ export const ProjectMainLayout: React.FC<ProjectMainLayoutProps> = ({ title, lin
 
     {links?.length === 1 ? (
       <div className="project-link gap-4">
-        <a className="button-material !px-2 !py-2 !text-lg md:!px-6 md:!py-3 md:!text-xl text-center" href={links[0]?.url} target="_blank" rel="noreferrer">
+        <a className="button-material !px-2 !py-2 !text-lg md:!px-6 md:!py-3 md:!text-lg text-center" href={links[0]?.url} target="_blank" rel="noreferrer">
           {links[0]?.label}
         </a>
       </div>
     ) : links?.length > 1 ? (
       <div className="project-link gap-4">
         {links.map((link) => (
-          <a key={link.url} className="button-material !px-2 !py-2 !text-lg md:!px-6 md:!py-3 md:!text-xl text-center" href={link.url} target="_blank" rel="noreferrer">
+          <a key={link.url} className="button-material !px-2 !py-2 !text-lg md:!px-6 md:!py-3 md:!text-lg text-center" href={link.url} target="_blank" rel="noreferrer">
             {link.label}
           </a>
         ))}

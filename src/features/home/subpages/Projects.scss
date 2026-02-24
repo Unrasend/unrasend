@@ -3,15 +3,19 @@
 }
 
 .project-title {
-  @apply self-center flex-1 pr-md mb-0 xs:mb-xs xs:w-full text-lg;
+  @apply self-center flex-1 pr-md mb-0 xs:mb-xs xs:w-full text-lg sm:text-center;
 }
 
 .project-link {
-  @apply flex items-center justify-end gap-md ml-auto -mr-6 xs:mr-0 xs:w-full xs:justify-start xs:mb-md text-lg;
+  @apply flex items-center justify-end gap-md ml-auto -mr-6 xs:mr-0 xs:w-full xs:mb-md text-lg sm:justify-center;
+
+  > a {
+    @apply sm:text-sm;
+  }
 }
 
 .project-desc {
-  @apply w-full block mt-md xs:mt-0 xs:text-md;
+  @apply w-full block mt-md xs:mt-0 xs:text-lg;
 }
 
 .project-demo-box {
