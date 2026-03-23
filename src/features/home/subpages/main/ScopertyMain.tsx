@@ -25,15 +25,15 @@ export const ScopertyMain = () => (
         ),
       },
       {
-        title: '2d Editing Mode',
+        title: 'Real estate map',
         content: <img src={scoperty1} alt="Scoperty.de Screenshot 1" className="project-demo-content" />
       },
       {
-        title: '3D Editing Mode',
+        title: 'Housing on sale card',
         content: <img src={scoperty2} alt="Scoperty.de Screenshot 2" className="project-demo-content" />
       },
       {
-        title: 'Design Contest Vote',
+        title: 'Map different zoom level',
         content: <img src={scoperty3} alt="Scoperty.de Screenshot 3" className="project-demo-content" />
       },
     ]}
